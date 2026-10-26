@@ -1,0 +1,21 @@
+{
+  "name": "tourello",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tourello: an interactive travel map of Turkestan, Kazakhstan.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "audio": "node scripts/generate-audio.mjs"
+  },
+  "dependencies": {
+    "maplibre-contour": "^0.1.1",
+    "maplibre-gl": "^4.7.1",
+    "three": "^0.160.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

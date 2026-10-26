@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tourello: Explore Turkestan</title>
+<meta name="description" content="Tourello is an interactive map for international travellers exploring Turkestan, Kazakhstan: historical sites, culture, food and nature.">
+<meta name="theme-color" content="#f2591f">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Inter:wght@400;500;600&family=Marcellus&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="is-loading">
+
+<div id="loader" aria-hidden="true">
+  <div class="ring"><i></i></div>
+  <img src="assets/logo.png" alt="">
+  <small class="mono">generating terrain…</small>
+</div>
+
+<div id="map" aria-label="Interactive map of Turkestan"></div>
+<div id="clouds" aria-hidden="true"><i></i><i></i><i></i></div>
+<div id="tilt" aria-hidden="true"><i class="t-top"></i><i class="t-bot"></i></div>
+<div id="grain" aria-hidden="true"></div>
+<div class="hud hud-tl" id="hudSector" aria-hidden="true">
+  <b><s></s>Sector</b>
+  <small>Sector ID: TRK-043-068</small>
+  <strong id="hudName">Turkestan</strong>
+  <small id="hudGps">GPS: 43.2977, 68.2709 · Z13</small>
+  <small>Elev: terrain tiles © Mapzen / AWS</small>
+</div>
+<div class="hud hud-bl" id="hudTele" aria-hidden="true">
+  <b><s></s>Telemetry</b>
+  <div class="row"><span>cam az</span><em id="tAz">0.0°</em></div>
+  <div class="row"><span>cam el</span><em id="tEl">0.0°</em></div>
+  <div class="row"><span>zoom</span><em id="tZ">13.40</em></div>
+  <div class="row"><span>fps</span><em id="tFps">60</em></div>
+  <div class="row"><span>t+</span><em id="tT">00:00</em></div>
+</div>
+<div id="scrim"></div>
+
+<header id="top">
+  <button class="top-link" id="btnInfo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Travel info</span></button>
+  <a class="logo" href="./" aria-label="Tourello"><img src="assets/logo.png" alt="Tourello"></a>
+  <div class="top-right">
+    <button class="top-link" id="btnAudio" aria-pressed="true"><span class="eq"><i></i><i></i><i></i><i></i></span><span id="audioLabel">Audio guide on</span></button>
+    <button class="top-link" id="btnInquire"><span>Inquire</span></button>
+  </div>
+</header>
+
+<section id="intro">
+  <p class="eyebrow">In the heart of</p>
+  <h1>TURKESTAN</h1>
+  <p class="sub">Journey to the spiritual capital of the Silk Road.</p>
+  <button class="btn-cream" id="btnExplore">Explore the map</button>
+  <button class="intro-alt" id="btnNoAudio">Start without audio</button>
+</section>
+
+<div id="hint" aria-live="polite">
+  <div class="hint-title" id="hintTitle">Drag to move</div>
+  <div class="hint-line"></div>
+  <div class="hint-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 11V5.5a1.5 1.5 0 013 0V10m0-1.5a1.5 1.5 0 013 0V11m0-1a1.5 1.5 0 013 0v5a6 6 0 01-6 6h-1a6 6 0 01-5-2.7L4.500 14a1.500 1.500 0 012.400-1.800L9 14.500"/></svg></div>
+  <div class="hint-text" id="hintText">Explore Turkestan by holding<br>and dragging the cursor</div>
+  <button class="hint-skip" id="hintSkip">Skip</button>
+</div>
+
+<nav id="bar" aria-label="Places">
+  <div id="list" role="menu"></div>
+  <div class="bar-row">
+    <button class="bar-tour" id="btnTour" aria-pressed="false"><svg class="play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg><svg class="stop" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14"/></svg><span id="tourLabel">Guided tour</span></button>
+    <button class="bar-home" id="btnHome" aria-label="Back to overview"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l9-7 9 7M5 10v10h5v-6h4v6h5V10"/></svg></button>
+    <button class="bar-select" id="btnList" aria-expanded="false"><span id="barLabel">Explore Turkestan</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg><svg class="x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+</nav>
+
+<button id="compass" aria-label="Reset north"><svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="rgba(42,23,12,.35)" stroke="#fff" stroke-opacity=".7"/><g id="needle"><path d="M23 9l5 14h-10z" fill="#fff"/><path d="M23 37l-5-14h10z" fill="#fff" fill-opacity=".4"/></g></svg></button>
+<button id="layers" aria-label="Switch map layer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></svg><b id="layersLabel">Satellite</b></button>
+<button id="season" aria-label="Change season"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></svg><b id="seasonLabel">Summer</b></button>
+
+<aside id="panel" aria-live="polite"></aside>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lb-x" id="lbX" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav next" id="lbNext" aria-label="Next"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<div id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-x" id="modalX" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="tabs"><button data-tab="info">Travel info</button><button data-tab="inquire">Plan your trip</button></div>
+    <div class="tab" id="tab-info"></div>
+    <div class="tab" id="tab-inquire">
+      <h2>Plan your trip</h2>
+      <p class="lead">Tell us when you are coming and what you love. We will reply with a tailored route.</p>
+      <form id="form">
+        <div class="row"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label></div>
+        <div class="row"><label>Travel dates<input name="dates" placeholder="e.g. 10–17 May"></label><label>Travellers<input name="n" type="number" min="1" value="2"></label></div>
+        <fieldset><legend>Interests</legend><div id="interests"></div></fieldset>
+        <label>Message<textarea name="msg" rows="3" placeholder="Anything we should know?"></textarea></label>
+        <button class="btn-primary" type="submit">Send inquiry</button>
+        <p class="thanks" id="thanks"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
