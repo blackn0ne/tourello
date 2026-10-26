@@ -1,0 +1,773 @@
+{
+ "places": {
+  "yasawi": {
+   "name": "Mausoleo de Khoja Ahmed Yasawi",
+   "tag": "La joya de la UNESCO del sur de Kazajistán",
+   "body": [
+    "Iniciado en 1389 por orden de Amir Temur, este vasto mausoleo de ladrillo rinde homenaje al poeta y maestro sufí del siglo XII Khoja Ahmed Yasawi. Su cúpula turquesa, una de las más grandes de Asia Central, se eleva sobre un monumental portal cubierto de azulejos vidriados.",
+    "El edificio nunca se terminó, y eso es parte de su encanto: observa el ladrillo sin enlucir de las paredes traseras para ver cómo trabajaban los constructores timúrides. Sigue siendo un sitio de peregrinación activo para musulmanes de toda Asia Central."
+   ],
+   "facts": [
+    [
+     "UNESCO",
+     "Sitio del Patrimonio Mundial, 2003"
+    ],
+    [
+     "Construido",
+     "Desde 1389"
+    ],
+    [
+     "Tiempo necesario",
+     "2–3 horas"
+    ],
+    [
+     "Mejor luz",
+     "Tarde"
+    ]
+   ],
+   "tips": [
+    "Vístete modestamente: hombros y rodillas cubiertos; las mujeres pueden necesitar un pañuelo para la cabeza dentro.",
+    "Visita por la tarde cuando la cúpula está iluminada.",
+    "Contrata a un guía local en la entrada para conocer la historia sufí."
+   ]
+  },
+  "esim": {
+   "name": "Mausoleo de Esim Khan",
+   "tag": "Un khan de los kazajos reposa junto al santo",
+   "body": [
+    "Esim Khan gobernó el Kanato Kazajo a principios del siglo XVII y hizo de Turkestán su capital. Su pequeño y austero mausoleo se encuentra dentro del complejo Yasawi, a pocos pasos del gran portal.",
+    "Varios khanes y nobles fueron enterrados aquí a lo largo de los siglos: ser enterrado junto a Khoja Ahmed Yasawi era el mayor honor de la estepa."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Siglo XVII"
+    ],
+    [
+     "Tiempo necesario",
+     "20 minutos"
+    ],
+    [
+     "Nota",
+     "Dentro del complejo Yasawi"
+    ]
+   ],
+   "tips": [
+    "Busca la forma simple de ladrillo: fue construido para un guerrero, no para exhibición.",
+    "Combina con el mausoleo y Rabiga Sultan Begim en una sola caminata."
+   ]
+  },
+  "hilvet": {
+   "name": "Mezquita Subterránea Hilvet",
+   "tag": "El retiro subterráneo del santo",
+   "body": [
+    "Junto al mausoleo se encuentra la pequeña cámara subterránea donde se dice que Khoja Ahmed Yasawi pasó sus últimos años en meditación. Escaleras estrechas conducen a una celda fresca y tranquila.",
+    "Es un espacio pequeño, por lo que las visitas son breves y respetuosas."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Siglo XII"
+    ],
+    [
+     "Tiempo necesario",
+     "20–30 minutos"
+    ],
+    [
+     "Nota",
+     "Sitio sagrado activo"
+    ]
+   ],
+   "tips": [
+    "Quítate los zapatos donde se indique.",
+    "Mantén las voces bajas y pregunta antes de fotografiar a los fieles."
+   ]
+  },
+  "rabiga": {
+   "name": "Mausoleo de Rabiga Sultan Begim",
+   "tag": "Una tumba real del siglo XV con una cúpula azul cielo",
+   "body": [
+    "Cerca del complejo Yasawi se encuentra el mausoleo de Rabiga Sultan Begim, una nieta del rey astrónomo Ulugh Beg. El edificio compacto está coronado por una cúpula azul acanalada y está rodeado de tranquilos jardines.",
+    "Es una parada pacífica que rara vez está concurrida."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Siglo XV"
+    ],
+    [
+     "Tiempo necesario",
+     "30 minutos"
+    ],
+    [
+     "Nota",
+     "Incluido en la visita al complejo principal"
+    ]
+   ],
+   "tips": [
+    "Combina con el mausoleo de Yasawi en una sola caminata.",
+    "Los jardines son hermosos en primavera."
+   ]
+  },
+  "mosque": {
+   "name": "Mezquita Khoja Ahmed Yasawi",
+   "tag": "La nueva gran mezquita junto al antiguo complejo",
+   "body": [
+    "Justo al sur del mausoleo se alza la nueva gran mezquita de Turkestán, inaugurada en 2026 y construida como un regalo de Uzbekistán al pueblo de Kazajistán. Cuatro minaretes, un vasto salón de oración para más de 5,000 fieles y aivans tradicionales evocan las formas timuridas del antiguo complejo en materiales modernos.",
+    "Fuentes, jardines y la iluminación nocturna a su alrededor han convertido el borde sur del centro histórico en un nuevo paseo."
+   ],
+   "facts": [
+    [
+     "Inaugurada",
+     "2026"
+    ],
+    [
+     "Capacidad",
+     "Más de 5,000 fieles"
+    ],
+    [
+     "Minaretes",
+     "Cuatro, aproximadamente 61 m"
+    ],
+    [
+     "Tiempo necesario",
+     "45 minutos"
+    ]
+   ],
+   "tips": [
+    "Mezquita activa: vestimenta modesta, quitarse los zapatos dentro, no se permiten visitas durante la oración.",
+    "Ven al atardecer para disfrutar de la iluminación y la vista de ambas cúpulas."
+   ]
+  },
+  "juma": {
+   "name": "Mezquita Juma de Turkestán",
+   "tag": "Una mezquita de madera del viernes de 1878",
+   "body": [
+    "La Mezquita Juma (del viernes) fue construida en 1878 con columnas de madera talladas y un techo plano con vigas en la tradición de Asia Central. Es la mezquita en funcionamiento más antigua de la ciudad y un tranquilo contrapunto al monumental mausoleo de al lado.",
+    "Dentro, la luz cae entre delgadas columnas pintadas; afuera, el patio se llena de fieles los viernes por la tarde."
+   ],
+   "facts": [
+    [
+     "Construida",
+     "1878"
+    ],
+    [
+     "Tiempo necesario",
+     "30 minutos"
+    ],
+    [
+     "Nota",
+     "Mezquita activa: vestimenta modesta, no se permiten visitas durante la oración"
+    ]
+   ],
+   "tips": [
+    "Pide permiso antes de fotografiar en el interior.",
+    "El mediodía del viernes es hora de oración; visita antes o después."
+   ]
+  },
+  "kultobe": {
+   "name": "Asentamiento Antiguo Kultobe",
+   "tag": "Sitios de excavación bajo el viejo montículo de la ciudadela",
+   "body": [
+    "Kultobe es la colina que preserva las capas de la antigua Yasy, la ciudad que creció hasta convertirse en Turkestán. Los arqueólogos han descubierto calles, talleres y hornos aquí que datan de hace más de mil años.",
+    "Sube al montículo al atardecer para disfrutar de la vista de la cúpula del mausoleo sobre la ciudad moderna."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Temprano medieval"
+    ],
+    [
+     "Tiempo necesario",
+     "1 hora"
+    ],
+    [
+     "Mejor momento",
+     "Atardecer"
+    ]
+   ],
+   "tips": [
+    "Usa zapatos resistentes; los caminos son irregulares.",
+    "Lleva agua en verano."
+   ]
+  },
+  "hamam": {
+   "name": "Baño Histórico (Hammam)",
+   "tag": "Un baño público restaurado del siglo XVI",
+   "body": [
+    "Cerca del mausoleo, este baño histórico muestra cómo los viajeros de la Ruta de la Seda se lavaban y descansaban. Sus cúpulas de ladrillo y sistema de calefacción están bien conservados y forman un pequeño museo.",
+    "Busca los nichos tallados y los ingeniosos canales de calefacción por debajo del suelo."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Siglo XVI"
+    ],
+    [
+     "Tiempo necesario",
+     "30–45 minutos"
+    ],
+    [
+     "Tipo",
+     "Museo"
+    ]
+   ],
+   "tips": [
+    "Lleva una cámara para las cúpulas.",
+    "Es pequeño, así que ve fuera de las horas pico."
+   ]
+  },
+  "museum": {
+   "name": "Museo-Reserva Azret Sultan",
+   "tag": "La historia de Turkestán en un solo lugar",
+   "body": [
+    "La museo-reserva cuida del complejo Yasawi y de la ciudad antigua. Sus salas explican la historia de Turkestán como capital espiritual y política del Kanato Kazajo.",
+    "Las exposiciones incluyen manuscritos, cerámica, joyería y maquetas de la ciudad histórica."
+   ],
+   "facts": [
+    [
+     "Tiempo necesario",
+     "1–2 horas"
+    ],
+    [
+     "Idiomas",
+     "Kazajo, Ruso, Inglés"
+    ],
+    [
+     "Consejo",
+     "Empieza aquí para tener contexto"
+    ]
+   ],
+   "tips": [
+    "Pregunta sobre guías de audio en inglés.",
+    "Las reglas de fotografía varían según la sala."
+   ]
+  },
+  "karavan": {
+   "name": "Karavan Saray",
+   "tag": "Un barrio de tiendas y talleres al estilo caravanserai",
+   "body": [
+    "Karavan Saray recrea la atmósfera de una posada de la Ruta de la Seda, con patios arqueados, talleres de artesanía, tiendas de souvenirs y cafeterías.",
+    "Observa a los artesanos hacer fieltro, cuero y joyería, y compra un regalo hecho a mano directamente del creador."
+   ],
+   "facts": [
+    [
+     "Tiempo necesario",
+     "1–2 horas"
+    ],
+    [
+     "Mejor para",
+     "Souvenirs y artesanías"
+    ],
+    [
+     "Presupuesto",
+     "$–$"
+    ]
+   ],
+   "tips": [
+    "Los precios son justos, pero puedes pedir amablemente un mejor precio.",
+    "Las tarjetas son comunes; lleva efectivo pequeño para los puestos."
+   ]
+  },
+  "amph": {
+   "name": "Anfiteatro de Turkestán",
+   "tag": "Espectáculos al aire libre en el escenario de la Ruta de la Seda",
+   "body": [
+    "El anfiteatro junto al Karavan Saray acoge conciertos, espectáculos folclóricos y festivales bajo el cielo abierto, con la cúpula del mausoleo en el horizonte.",
+    "En las noches de verano, aquí es donde se reúne la ciudad: música, luces en los canales de agua y puestos de comida a lo largo del paseo."
+   ],
+   "facts": [
+    [
+     "Capacidad",
+     "Alrededor de 3,000"
+    ],
+    [
+     "Mejor momento",
+     "Noches de verano"
+    ],
+    [
+     "Presupuesto",
+     "Gratis a $"
+    ]
+   ],
+   "tips": [
+    "Consulta el programa en la taquilla de Karavan Saray.",
+    "Lleva una chaqueta ligera: las noches se enfrían."
+   ]
+  },
+  "fountain": {
+   "name": "Fuente Musical",
+   "tag": "Un loto de agua y luz en las noches de verano",
+   "body": [
+    "La fuente cantarina junto al anfiteatro tiene forma de loto y está rodeada de diez chorros más pequeños. Por la noche, sus columnas de agua, de hasta 15 metros de altura, bailan al ritmo de la música y luces de colores.",
+    "Fue un regalo de Kazajistán Oriental por el renacimiento de la ciudad en 2019 y ahora es el punto de encuentro favorito de las familias locales por la noche."
+   ],
+   "facts": [
+    [
+     "Inaugurada",
+     "2019"
+    ],
+    [
+     "Espectáculos",
+     "Noches de verano después del anochecer"
+    ],
+    [
+     "Presupuesto",
+     "Gratis"
+    ]
+   ],
+   "tips": [
+    "Los espectáculos se realizan desde finales de primavera hasta principios de otoño.",
+    "Ponte del lado del viento a menos que quieras un refrescante rocío."
+   ]
+  },
+  "arbat": {
+   "name": "Arbat de Turkestán",
+   "tag": "El paseo peatonal de la ciudad",
+   "body": [
+    "El Arbat de Turkestán es una calle peatonal con un escenario, instalaciones de iluminación y una truss iluminada de 150 metros sobre la pasarela. Músicos callejeros, helados, souvenirs y Wi-Fi gratuito hacen de este el lugar más fácil para sentir el ritmo de la nueva ciudad.",
+    "Conecta el centro histórico con el complejo Karavan Saray, por lo que es un paseo natural por la tarde entre los dos."
+   ],
+   "facts": [
+    [
+     "Mejor momento",
+     "Tardes"
+    ],
+    [
+     "Tiempo necesario",
+     "1 hora"
+    ],
+    [
+     "Presupuesto",
+     "Gratis"
+    ]
+   ],
+   "tips": [
+    "Prueba el helado local y los puestos de jugos frescos.",
+    "Las tardes de fin de semana tienen más música."
+   ]
+  },
+  "theatre": {
+   "name": "Teatro de Música y Drama de Turkestán",
+   "tag": "510 asientos de drama kazajo y mundial",
+   "body": [
+    "Inaugurado en 2021, el teatro combina estilos clásicos y orientales y tiene 510 asientos. Su primera producción fue “Borte”, sobre la esposa de Gengis Kan; hoy el repertorio abarca desde épicas kazajas hasta musicales y conciertos.",
+    "Incluso sin un boleto, la fachada y la plaza frente a ella valen la pena una mirada en el camino por el Arbat."
+   ],
+   "facts": [
+    [
+     "Inaugurado",
+     "2021"
+    ],
+    [
+     "Asientos",
+     "510"
+    ],
+    [
+     "Idioma",
+     "Kazajo, algo de ruso"
+    ]
+   ],
+   "tips": [
+    "Compra boletos en la taquilla o en línea unos días antes.",
+    "Vístete de manera smart-casual; así lo hacen los locales."
+   ]
+  },
+  "taikazan": {
+   "name": "Monumento Taikazan",
+   "tag": "Un eco de bronce de dos toneladas del caldero sagrado",
+   "body": [
+    "El Taikazan original, un caldero de bronce de dos toneladas fundido en 1399 para el mausoleo de Yasawi, es un símbolo de hospitalidad y la unidad de los pueblos turcos. Una réplica de bronce a tamaño real se encuentra en una pequeña plaza en la calle Nursultan Nazarbayev, donde puedes caminar a su alrededor y tocarlo.",
+    "El original ocupa un lugar destacado en la sala Kazandyk del mausoleo; ve ambos y compáralos."
+   ],
+   "facts": [
+    [
+     "Original fundido",
+     "1399, por orden de Timur"
+    ],
+    [
+     "Peso",
+     "Aproximadamente 2 toneladas"
+    ],
+    [
+     "Tiempo necesario",
+     "15 minutos"
+    ]
+   ],
+   "tips": [
+    "Los locales hacen un deseo con una mano en el borde.",
+    "La plaza es una parada agradable en el camino al bazar."
+   ]
+  },
+  "gauhar": {
+   "name": "Mausoleo de Gauhar Ana",
+   "tag": "El lugar de descanso de la hija de Yasawi",
+   "body": [
+    "Gauhar Ana fue la hija de Khoja Ahmed Yasawi. Su mausoleo se encuentra en el borde sur de la ciudad y es una parada de peregrinación popular para mujeres que piden bendiciones familiares.",
+    "El edificio actual es modesto, pero el sitio ha sido venerado durante siglos y el cementerio a su alrededor es uno de los más antiguos de Turkestán."
+   ],
+   "facts": [
+    [
+     "Época",
+     "Sitio venerado desde el siglo XII"
+    ],
+    [
+     "Tiempo necesario",
+     "30 minutos"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 4 km del centro"
+    ]
+   ],
+   "tips": [
+    "Se espera un pañuelo en la cabeza para las mujeres.",
+    "Los taxis desde el centro tardan diez minutos."
+   ]
+  },
+  "yurt": {
+   "name": "Experiencia de Yurt Kazajo",
+   "tag": "Té, fieltro y narración en un yurt tradicional",
+   "body": [
+    "Justo fuera de la ciudad puedes visitar un campamento de yurtas administrado por una familia. Los anfitriones muestran cómo se levanta la tienda forrada de fieltro, sirven té caliente con baursaks y tocan la dombra, el laúd kazajo de dos cuerdas.",
+    "Las estancias nocturnas son posibles en primavera y otoño."
+   ],
+   "facts": [
+    [
+     "Tiempo necesario",
+     "2 horas o una noche"
+    ],
+    [
+     "Mejor temporada",
+     "Abr–Jun · Sep–Oct"
+    ],
+    [
+     "Presupuesto",
+     "$"
+    ]
+   ],
+   "tips": [
+    "Las ubicaciones varían; organiza a través de tu hotel o un anfitrión local.",
+    "Quítate los zapatos en la puerta del yurt y evita pisar el umbral."
+   ]
+  },
+  "bazaar": {
+   "name": "Bazaar Central de Turkestán",
+   "tag": "Especias, frutas secas, pan y lácteos frescos",
+   "body": [
+    "Los bazares del sur de Kazajistán son el mejor lugar para degustar la región. Pirámides de albaricoques secos y pasas se encuentran junto a panes frescos, queso de leche de oveja (kurt) y tarros de miel.",
+    "Pide probar antes de comprar y prueba shubat, un leche de camello fermentada y ácida."
+   ],
+   "facts": [
+    [
+     "Tiempo necesario",
+     "1–2 horas"
+    ],
+    [
+     "Mejor momento",
+     "Mañana"
+    ],
+    [
+     "Presupuesto",
+     "$"
+    ]
+   ],
+   "tips": [
+    "Lleva billetes pequeños.",
+    "Mantén los objetos de valor en un bolsillo delantero en los pasillos concurridos."
+   ]
+  },
+  "kitchen": {
+   "name": "Barrio de la Cocina Kazaja",
+   "tag": "Beshbarmak, baursak y té",
+   "body": [
+    "Prueba el plato nacional beshbarmak, carne tierna hervida servida sobre fideos anchos en un caldo rico. Completa con baursaks calientes (masa frita) y teteras interminables de té.",
+    "Muchos restaurantes también sirven plov y samsa al estilo uzbeko, resultado de la historia compartida de la región."
+   ],
+   "facts": [
+    [
+     "Imperdibles",
+     "Beshbarmak, kuyrdak, manty"
+    ],
+    [
+     "Bebidas",
+     "Té, kumys, shubat"
+    ],
+    [
+     "Presupuesto",
+     "$–$"
+    ]
+   ],
+   "tips": [
+    "Los platos se comparten; pide menos de lo que piensas.",
+    "Diga que eres vegetariano temprano; la carne es la opción por defecto."
+   ]
+  },
+  "jibek": {
+   "name": "Parque de Diversiones Jibek Joly",
+   "tag": "Atracciones, una noria y callejones verdes",
+   "body": [
+    "El parque Jibek Joly (“Ruta de la Seda”) en la nueva parte de la ciudad tiene catorce atracciones construidas en Italia, una noria con vista sobre la estepa, callejones sombreados, áreas de juegos y canchas deportivas.",
+    "Es el lugar para llevar a los niños después de una mañana de mausoleos, y un buen lugar para ver el atardecer sobre el horizonte plano."
+   ],
+   "facts": [
+    [
+     "Atracciones",
+     "14"
+    ],
+    [
+     "Tiempo necesario",
+     "2–3 horas"
+    ],
+    [
+     "Presupuesto",
+     "$"
+    ]
+   ],
+   "tips": [
+    "Las atracciones abren desde la tarde en el calor del verano.",
+    "Combina con el Turkestan Arena cercano si hay un partido."
+   ]
+  },
+  "arena": {
+   "name": "Arena de Turkestán",
+   "tag": "Un estadio de 7,000 asientos y el hogar del FC Turan",
+   "body": [
+    "La Arena de Turkestán es el estadio moderno de la ciudad, hogar del FC Turan y el lugar de la Supercopa de Kazajistán 2021. Su techo curvado es uno de los hitos del nuevo distrito administrativo.",
+    "Una noche de fútbol aquí es una forma fácil de conocer a los locales: las entradas son baratas y la atmósfera es amigable."
+   ],
+   "facts": [
+    [
+     "Capacidad",
+     "7,000"
+    ],
+    [
+     "Inaugurado",
+     "2021"
+    ],
+    [
+     "Presupuesto",
+     "$"
+    ]
+   ],
+   "tips": [
+    "Consulta el calendario de la Liga Premier de Kazajistán.",
+    "Los taxis de regreso al centro son fáciles de encontrar después de los partidos."
+   ]
+  },
+  "tulips": {
+   "name": "Laderas de Karatau y Tulipanes de Primavera",
+   "tag": "Una alfombra roja de tulipanes silvestres en abril",
+   "body": [
+    "Desde principios de abril hasta mediados de mayo, las laderas de la cordillera de Karatau cerca de Kentau se tiñen de rojo y amarillo con tulipanes y amapolas silvestres. Es una temporada corta y un momento mágico para visitar.",
+    "Contrata a un conductor local para encontrar los mejores campos y combina el viaje con un picnic."
+   ],
+   "facts": [
+    [
+     "Florecimiento",
+     "Mediados de abril a principios de mayo"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 30 km de Turkestán"
+    ],
+    [
+     "Tiempo necesario",
+     "Medio día"
+    ]
+   ],
+   "tips": [
+    "Mira, no recojas: los tulipanes silvestres están protegidos.",
+    "Lleva protección solar; hay poca sombra."
+   ]
+  },
+  "aksu": {
+   "name": "Reserva Natural Aksu-Zhabagly",
+   "tag": "La reserva más antigua de Kazajistán en el Tian Shan Occidental",
+   "body": [
+    "Fundada en 1926, Aksu-Zhabagly protege praderas alpinas, cañones y glaciares, junto con leopardos de las nieves, íbices y especies raras de tulipanes. La reserva es parte de un sitio del Patrimonio Mundial de la UNESCO.",
+    "Los senderos de senderismo, las cascadas y el cañón de Aksu son los puntos destacados."
+   ],
+   "facts": [
+    [
+     "UNESCO",
+     "Tian Shan Occidental, 2016"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 220 km, planifica 1–2 días"
+    ],
+    [
+     "Mejor temporada",
+     "Mayo–Sep"
+    ]
+   ],
+   "tips": [
+    "Se requiere un permiso; organiza a través de la oficina de la reserva.",
+    "El clima cambia rápido — lleva capas."
+   ]
+  },
+  "arystanbab": {
+   "name": "Mausoleo de Arystan Bab",
+   "tag": "Lugar de descanso del maestro de Yasawi",
+   "body": [
+    "Arystan Bab fue el maestro espiritual de Khoja Ahmed Yasawi. Su mausoleo, reconstruido en el siglo XIV, es un sitio de peregrinación ubicado en un pueblo rural al sur de Turkestán.",
+    "La mayoría de los visitantes lo combinan con un viaje a la estepa cercana."
+   ],
+   "facts": [
+    [
+     "Distancia",
+     "Aproximadamente 50 km al sur de Turkestán"
+    ],
+    [
+     "Tiempo necesario",
+     "1 hora"
+    ],
+    [
+     "Nota",
+     "Sitio de peregrinación activo"
+    ]
+   ],
+   "tips": [
+    "Se espera vestimenta modesta.",
+    "Detente en el pueblo para tomar té."
+   ]
+  },
+  "sauran": {
+   "name": "Ciudad Antigua de Sauran",
+   "tag": "Un centro comercial medieval fortificado",
+   "body": [
+    "Sauran fue una próspera ciudad de la Ruta de la Seda con enormes murallas de tierra, una ciudadela y un complejo sistema de agua. Hoy puedes caminar a lo largo de las enormes murallas y imaginar las caravanas.",
+    "Es un paisaje inquietante y vacío, ideal para fotógrafos."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Siglos XI–XVIII"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 50 km de Turkestán"
+    ],
+    [
+     "Tiempo necesario",
+     "1–2 horas"
+    ]
+   ],
+   "tips": [
+    "Hay pocas instalaciones; lleva agua.",
+    "Ve con un conductor local."
+   ]
+  },
+  "otrar": {
+   "name": "Ciudad Antigua de Otrar",
+   "tag": "Lugar de nacimiento del filósofo Al-Farabi",
+   "body": [
+    "Otrar fue un importante cruce de caminos de la Ruta de la Seda y el hogar del polímata Al-Farabi. En 1219, la ciudad cayó ante los mongoles, un evento que cambió la historia de Asia Central.",
+    "Las excavaciones y un museo dan vida a las ruinas."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Siglos I–XVIII"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 55 km al sur, cerca de Arystan Bab"
+    ],
+    [
+     "Tiempo necesario",
+     "2 horas"
+    ]
+   ],
+   "tips": [
+    "Los caminos pueden estar en mal estado después de la lluvia.",
+    "Combina con una visita a Arystan Bab."
+   ]
+  },
+  "sayram": {
+   "name": "Sayram y Santuario de Ibrahim-Ata",
+   "tag": "Una de las ciudades más antiguas de Asia Central",
+   "body": [
+    "Sayram ha existido durante más de dos mil años. Su casco antiguo y el santuario de Ibrahim-Ata, padre de Khoja Ahmed Yasawi, son importantes para los peregrinos.",
+    "Se encuentra cerca de Shymkent, por lo que es ideal para una excursión de un día."
+   ],
+   "facts": [
+    [
+     "Era",
+     "Más de 2,000 años de antigüedad"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 165 km, cerca de Shymkent"
+    ],
+    [
+     "Tiempo necesario",
+     "2 horas"
+    ]
+   ],
+   "tips": [
+    "Pide a un guía que explique los santuarios.",
+    "Prueba los dulces locales en el bazar."
+   ]
+  },
+  "domalak": {
+   "name": "Mausoleo de Domalak Ana",
+   "tag": "La madre de la Gran Horda, honrada en las colinas",
+   "body": [
+    "Domalak Ana, la sabia esposa del ancestro Baidibek, es venerada como la madre de tres grandes tribus kazajas. Su mausoleo de mármol blanco se eleva en una colina en las estribaciones de Karatau, reconstruido en 1996 en el sitio de la tumba medieval.",
+    "Los peregrinos vienen durante todo el año; las vistas sobre la estepa y la tranquilidad del lugar hacen que valga la pena la excursión de un día."
+   ],
+   "facts": [
+    [
+     "Reconstruido",
+     "1996"
+    ],
+    [
+     "Distancia",
+     "Aproximadamente 170 km al este de Turkestán"
+    ],
+    [
+     "Tiempo necesario",
+     "Excursión de medio día"
+    ]
+   ],
+   "tips": [
+    "Ve con un conductor; no hay transporte público.",
+    "Respeta a los peregrinos: habla en voz baja y evita caminar sobre las tumbas."
+   ]
+  }
+ },
+ "cats": {
+  "history": "Sitios Históricos",
+  "culture": "Cultura y Artesanías",
+  "food": "Comida y Mercados",
+  "nature": "Naturaleza y Aventura"
+ },
+ "info": [
+  [
+   "Visa & entrada",
+   "Los ciudadanos de muchos países, incluidos la mayor parte de Europa y EE. UU., pueden entrar a Kazajistán sin visa por una estancia limitada. Las reglas cambian, así que verifica la página oficial de e-visa antes de viajar."
+  ],
+  [
+   "Cómo llegar",
+   "Turkestán tiene su propio aeropuerto internacional, y hay trenes de alta velocidad que conectan con Almaty, Astana y Shymkent. Los taxis y las aplicaciones de transporte son económicos."
+  ],
+  [
+   "Dinero y tarjetas",
+   "La moneda es el tenge (KZT). Las tarjetas funcionan en hoteles y restaurantes, pero lleva efectivo para los bazares y áreas rurales."
+  ],
+  [
+   "SIM e internet",
+   "Compra una tarjeta SIM local en el aeropuerto o en una tienda de móviles con tu pasaporte. El Wi-Fi está disponible en la mayoría de los hoteles y cafeterías."
+  ],
+  [
+   "Etiqueta",
+   "Los kazajos son famosos por su hospitalidad. Acepta el té cuando te lo ofrezcan, vístete modestamente en los santuarios y quítate los zapatos al entrar a una casa o yurt."
+  ],
+  [
+   "Cuándo visitar",
+   "De abril a junio y de septiembre a octubre son ideales. Julio y agosto pueden superar los 40°C, y los inviernos son fríos pero tranquilos."
+  ]
+ ]
+}
