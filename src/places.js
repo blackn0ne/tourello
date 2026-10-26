@@ -62,6 +62,39 @@ export const PLACES = [
   "z": 16.6
  },
  {
+  "id": "esim",
+  "cat": "history",
+  "name": "Esim Khan Mausoleum",
+  "tag": "A khan of the Kazakhs rests beside the saint",
+  "ll": [
+   68.27126,
+   43.29728
+  ],
+  "z": 17.4,
+  "body": [
+   "Esim Khan ruled the Kazakh Khanate in the early 17th century and made Turkestan his capital. His small, austere mausoleum stands inside the Yasawi complex, a few steps from the great portal.",
+   "Several khans and nobles were buried here over the centuries: being laid to rest next to Khoja Ahmed Yasawi was the highest honour of the steppe."
+  ],
+  "facts": [
+   [
+    "Era",
+    "17th century"
+   ],
+   [
+    "Time needed",
+    "20 minutes"
+   ],
+   [
+    "Note",
+    "Inside the Yasawi complex"
+   ]
+  ],
+  "tips": [
+   "Look for the simple brick form: it was built for a warrior, not for show.",
+   "Combine with the mausoleum and Rabiga Sultan Begim in one walk."
+  ]
+ },
+ {
   "id": "hilvet",
   "cat": "history",
   "name": "Hilvet Underground Mosque",
@@ -126,6 +159,39 @@ export const PLACES = [
    43.2953
   ],
   "z": 17.4
+ },
+ {
+  "id": "juma",
+  "cat": "history",
+  "name": "Juma Mosque of Turkestan",
+  "tag": "A wooden Friday mosque from 1878",
+  "ll": [
+   68.27061,
+   43.29587
+  ],
+  "z": 17.2,
+  "body": [
+   "The Juma (Friday) Mosque was built in 1878 with carved wooden columns and a flat beamed ceiling in the Central Asian tradition. It is the oldest working mosque in the city and a quiet counterpoint to the monumental mausoleum next door.",
+   "Inside, light falls between slender painted pillars; outside, the courtyard fills with worshippers on Friday afternoons."
+  ],
+  "facts": [
+   [
+    "Built",
+    "1878"
+   ],
+   [
+    "Time needed",
+    "30 minutes"
+   ],
+   [
+    "Note",
+    "Active mosque: modest dress, no visits during prayer"
+   ]
+  ],
+  "tips": [
+   "Ask permission before photographing inside.",
+   "Friday midday is prayer time; visit before or after."
+  ]
  },
  {
   "id": "kultobe",
@@ -246,7 +312,7 @@ export const PLACES = [
    ],
    [
     "Budget",
-    "$–$$"
+    "$–$"
    ]
   ],
   "tips": [
@@ -258,6 +324,72 @@ export const PLACES = [
    43.2933
   ],
   "z": 16.8
+ },
+ {
+  "id": "amph",
+  "cat": "culture",
+  "name": "Turkestan Amphitheatre",
+  "tag": "Open-air shows on the Silk Road stage",
+  "ll": [
+   68.27243,
+   43.30053
+  ],
+  "z": 16.8,
+  "body": [
+   "The amphitheatre next to the Karavan Saray hosts concerts, folklore shows and festivals under the open sky, with the mausoleum’s dome on the horizon.",
+   "In summer evenings this is where the city gathers: music, lights on the water channels and food stalls along the promenade."
+  ],
+  "facts": [
+   [
+    "Capacity",
+    "About 3,000"
+   ],
+   [
+    "Best time",
+    "Summer evenings"
+   ],
+   [
+    "Budget",
+    "Free to $"
+   ]
+  ],
+  "tips": [
+   "Check the programme at the Karavan Saray ticket office.",
+   "Bring a light jacket: evenings get cool."
+  ]
+ },
+ {
+  "id": "gauhar",
+  "cat": "history",
+  "name": "Gauhar Ana Mausoleum",
+  "tag": "The resting place of Yasawi’s daughter",
+  "ll": [
+   68.28617,
+   43.26268
+  ],
+  "z": 16.4,
+  "body": [
+   "Gauhar Ana was the daughter of Khoja Ahmed Yasawi. Her mausoleum stands on the southern edge of the city and is a popular pilgrimage stop for women asking for family blessings.",
+   "The present building is modest, but the site has been venerated for centuries and the cemetery around it is one of the oldest in Turkestan."
+  ],
+  "facts": [
+   [
+    "Era",
+    "Site venerated since the 12th century"
+   ],
+   [
+    "Time needed",
+    "30 minutes"
+   ],
+   [
+    "Distance",
+    "About 4 km from the centre"
+   ]
+  ],
+  "tips": [
+   "A headscarf is expected for women.",
+   "Taxis from the centre take ten minutes."
+  ]
  },
  {
   "id": "yurt",
@@ -279,7 +411,7 @@ export const PLACES = [
    ],
    [
     "Budget",
-    "$$"
+    "$"
    ]
   ],
   "tips": [
@@ -345,7 +477,7 @@ export const PLACES = [
    ],
    [
     "Budget",
-    "$–$$"
+    "$–$"
    ]
   ],
   "tips": [
@@ -555,6 +687,39 @@ export const PLACES = [
    42.3005
   ],
   "z": 13.5
+ },
+ {
+  "id": "domalak",
+  "cat": "history",
+  "name": "Domalak Ana Mausoleum",
+  "tag": "The mother of the Great Horde, honoured in the hills",
+  "ll": [
+   69.66998,
+   42.8751
+  ],
+  "z": 14,
+  "body": [
+   "Domalak Ana, the wise wife of the ancestor Baidibek, is revered as the mother of three great Kazakh tribes. Her white marble mausoleum rises on a hill in the Karatau foothills, rebuilt in 1996 on the site of the medieval tomb.",
+   "Pilgrims come year-round; the views over the steppe and the quiet of the place make it a worthwhile day trip."
+  ],
+  "facts": [
+   [
+    "Rebuilt",
+    "1996"
+   ],
+   [
+    "Distance",
+    "About 170 km east of Turkestan"
+   ],
+   [
+    "Time needed",
+    "Half-day trip"
+   ]
+  ],
+  "tips": [
+   "Go with a driver; there is no public transport.",
+   "Respect the pilgrims: speak softly and avoid walking across the graves."
+  ]
  }
 ];
 

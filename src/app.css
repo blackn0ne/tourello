@@ -30,17 +30,6 @@ body:not(.is-loading) #loader{opacity:0;visibility:hidden}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* clouds */
-#clouds{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;transition:opacity 1.4s;opacity:.35}
-body.exploring #clouds,body.ready #clouds,body.panel-open #clouds{opacity:0}
-#clouds i{position:absolute;width:60vw;height:36vw;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.75),rgba(255,255,255,0));animation:drift 120s linear infinite alternate}
-#clouds i:nth-child(1){top:-8%;left:-10%}
-#clouds i:nth-child(2){top:20%;left:40%;animation-duration:150s;animation-delay:-40s}
-#clouds i:nth-child(3){top:55%;left:-5%;animation-duration:170s;animation-delay:-70s}
-#clouds i:nth-child(4){top:60%;left:50%;animation-duration:130s;animation-delay:-20s}
-#clouds i:nth-child(5){top:5%;left:65%;width:40vw;height:26vw;animation-duration:110s;animation-delay:-90s}
-#clouds i:nth-child(6){top:35%;left:10%;width:45vw;height:28vw;animation-duration:160s;animation-delay:-10s}
-#clouds i:nth-child(7){top:78%;left:25%;width:50vw;height:22vw;animation-duration:140s;animation-delay:-60s}
-@keyframes drift{from{transform:translateX(-12vw)}to{transform:translateX(18vw)}}
 
 #scrim{position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at center,rgba(42,23,12,.18) 0%,rgba(42,23,12,.55) 100%);transition:opacity 1.2s}
 body.ready #scrim,body.exploring #scrim{opacity:0}
@@ -199,7 +188,7 @@ fieldset{border:0}
   .info-grid{grid-template-columns:1fr}.modal-card{padding:34px 22px}.row{grid-template-columns:1fr}
   .hint-title{font-size:1.8rem}
 }
-@media(prefers-reduced-motion:reduce){#clouds i{animation:none}.hint-line,.hint-ico{animation:none}}
+@media(prefers-reduced-motion:reduce){.hint-line,.hint-ico{animation:none}}
 #hint::before{content:"";position:absolute;left:50%;top:50%;width:520px;height:340px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(42,23,12,.55),rgba(42,23,12,0));z-index:-1}
 
 .p-route{display:inline-block;margin-top:22px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--primary-dark);border-bottom:1px solid var(--primary)}
@@ -241,15 +230,7 @@ body.speaking .eq i:nth-child(2){animation-delay:.15s}body.speaking .eq i:nth-ch
 #btnAudio.off .eq::after{content:"";position:absolute;left:-2px;right:-2px;top:50%;height:1.5px;background:currentColor;transform:rotate(-30deg)}
 .intro-alt{margin-top:20px;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;opacity:.85;border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:3px;text-shadow:0 1px 8px rgba(30,12,2,.6)}
 .intro-alt:hover{opacity:1}
-#clouds{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;mix-blend-mode:multiply;opacity:.5}
-#clouds i{position:absolute;width:70vw;height:46vw;border-radius:50%;background:radial-gradient(closest-side,rgba(120,95,70,.55),rgba(120,95,70,0));animation:cloud 180s linear infinite;will-change:transform}
-#clouds i:nth-child(1){top:-20%;left:-30%}
-#clouds i:nth-child(2){top:30%;left:20%;width:55vw;height:34vw;animation-duration:240s;animation-delay:-90s}
-#clouds i:nth-child(3){top:55%;left:-10%;width:80vw;height:40vw;animation-duration:210s;animation-delay:-150s}
-@keyframes cloud{from{transform:translate3d(-20vw,0,0)}to{transform:translate3d(55vw,8vh,0)}}
-body.panel-open #clouds,body.sat #clouds{opacity:0}
-@media(max-width:820px){.top-right{gap:8px}#audioLabel{display:none}#clouds{display:none}}
-@media(prefers-reduced-motion:reduce){#clouds i{animation:none}}
+@media(max-width:820px){.top-right{gap:8px}#audioLabel{display:none}}
 
 /* ---------- photos ---------- */
 .p-head.has-photo{padding-top:230px;min-height:400px}
@@ -307,7 +288,6 @@ body.panel-open #clouds,body.sat #clouds{opacity:0}
 /* ---------- realistic mode ---------- */
 body.sat #grain{opacity:.1}
 body.sat #grain::after{background:radial-gradient(ellipse at center,rgba(20,10,4,0) 40%,rgba(20,10,4,.55) 100%)}
-body.sat #clouds{opacity:.55}
 body.sat.ready:not(.panel-open) .hud-tl{opacity:1}
 body.sat .hud{background:rgba(20,12,6,.55);color:rgba(255,240,224,.8);border-color:rgba(255,255,255,.12)}
 body.sat .hud b,body.sat .hud strong,body.sat .hud .row em{color:#fff}

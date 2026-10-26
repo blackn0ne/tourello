@@ -58,7 +58,7 @@ import { CREDITS } from "./credits.js";
       const c = cat(p.cat);
       wrap.className = "pin-wrap"; el.className = `pin pin-${p.cat}`; el.setAttribute("aria-label", p.name);
       const n = String(PLACES.indexOf(p) + 1).padStart(2, "0");
-      el.innerHTML = `<img src="${thumb(p)}" alt="" loading="lazy"><u>TK-${n}</u><span><small>${c.name} · TK-${n}</small><b class="t">${p.name}</b></span>`;
+      el.innerHTML = `${CR[p.id] ? `<img src="${thumb(p)}" alt="" loading="lazy">` : `<i>${ICONS[c.icon]}</i>`}<u>TK-${n}</u><span><small>${c.name} · TK-${n}</small><b class="t">${p.name}</b></span>`;
       el.addEventListener("click", e => { e.stopPropagation(); openPlace(p.id); });
       el.addEventListener("mouseenter", () => { T.models.api.hover = p.id; });
       el.addEventListener("mouseleave", () => { T.models.api.hover = null; });

@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import maplibregl from "maplibre-gl";
 
-/* Tourello 3D icons: procedural low-poly "clay" models for every place, a comet that
-   travels the Silk Road route, and a flock of birds over the mausoleum.
+/* Tourello 3D layer: procedural models for every place, a golden sand stream drifting along the
+   Silk Road route, volumetric-looking clouds with ground shadows, and a flock of birds over the mausoleum.
    Rendered through a MapLibre custom layer with Three.js. */
   const C = {
     clay: 0xf1e6d4, clay2: 0xe4cfb4, brick: 0xd9b48c, ink: 0x4a2e1a, mandarin: 0xf2591f, teal: 0x2fa9b8, tealDark: 0x1a7f8d,
@@ -120,6 +120,22 @@ import maplibregl from "maplibre-gl";
       for (let i = 0; i < 46; i++) { const a = i * 2.4, r = Math.sqrt(i / 46) * 21; const x = Math.cos(a) * r, z = Math.sin(a) * r; g.add(cyl(0.25, 0.25, 4, C.green, x, 0.6, z, 5)); g.add(mesh(new THREE.ConeGeometry(1.3, 2.6, 6), cols[i % 4], x, 5.6, z)); }
       return g;
     },
+    mosque() {
+      const g = new THREE.Group();
+      g.add(disc(16, C.clay2)); g.add(box(22, 8, 16, C.brick, 0, 0.6, 0));
+      for (let i = -2; i <= 2; i++) g.add(cyl(0.6, 0.6, 8, C.gold, i * 4.4, 0.6, 8.5));             // carved wooden columns
+      g.add(box(24, 1.2, 18, C.ink, 0, 8.6, 0));                                                     // flat beamed roof
+      g.add(dome(3.5, C.green, 0, 9.8, -2)); g.add(cyl(0.9, 1.1, 14, C.brick, 9, 0.6, -6)); g.add(dome(1.4, C.green, 9, 14.6, -6));
+      return g;
+    },
+    amphitheatre() {
+      const g = new THREE.Group();
+      g.add(disc(20, C.clay2));
+      for (let r = 0; r < 5; r++) { const ring = mesh(new THREE.CylinderGeometry(8 + r * 2.4, 8 + r * 2.4, 1.6, 24, 1, false, Math.PI * 0.15, Math.PI * 0.7), C.clay, 0, 0.6 + r * 1.6, 0); g.add(ring); }
+      g.add(box(14, 0.8, 8, C.ink, 0, 0.6, 9)); g.add(box(14, 7, 0.8, C.mandarin, 0, 1.4, 13));
+      for (let i = -2; i <= 2; i++) g.add(mesh(new THREE.SphereGeometry(0.9, 8, 6), C.gold, i * 3, 9, 13));
+      return g;
+    },
     mountains() {
       const g = new THREE.Group();
       g.add(disc(30, C.clay2));
@@ -130,7 +146,7 @@ import maplibregl from "maplibre-gl";
       return g;
     }
   };
-  const KIND = { yasawi: ["mausoleum", true], rabiga: ["mausoleum"], arystanbab: ["mausoleum"], sayram: ["mausoleum"], hilvet: ["underground"], kultobe: ["ruins"], sauran: ["ruins"], otrar: ["ruins"], hamam: ["hammam"], museum: ["museum"], karavan: ["caravanserai"], yurt: ["yurts"], bazaar: ["bazaar"], kitchen: ["kitchen"], tulips: ["tulips"], aksu: ["mountains"] };
+  const KIND = { esim: ["mausoleum"], gauhar: ["mausoleum"], domalak: ["mausoleum"], juma: ["mosque"], amph: ["amphitheatre"], yasawi: ["mausoleum", true], rabiga: ["mausoleum"], arystanbab: ["mausoleum"], sayram: ["mausoleum"], hilvet: ["underground"], kultobe: ["ruins"], sauran: ["ruins"], otrar: ["ruins"], hamam: ["hammam"], museum: ["museum"], karavan: ["caravanserai"], yurt: ["yurts"], bazaar: ["bazaar"], kitchen: ["kitchen"], tulips: ["tulips"], aksu: ["mountains"] };
 
   function bird() {
     const g = new THREE.Group(), m = getMat(C.ink);
@@ -143,36 +159,86 @@ import maplibregl from "maplibre-gl";
       const o = maplibregl.MercatorCoordinate.fromLngLat(origin, 0), s = o.meterInMercatorCoordinateUnits();
       const local = ll => { const m = maplibregl.MercatorCoordinate.fromLngLat(ll, 0); return [(m.x - o.x) / s, (m.y - o.y) / s]; };
       const base = new THREE.Matrix4().makeTranslation(o.x, o.y, o.z).scale(new THREE.Vector3(s, -s, s)).multiply(new THREE.Matrix4().makeRotationX(Math.PI / 2));
-      const api = { selected: null, hover: null, zoomScale: 1, icons: false, elevation: () => 0 };
-      let scene, camera, renderer, items = [], birds = [], path = [], ribbon = null, ribbonZs = 1, ribbonElev = false;
-      /* golden Silk Road: a translucent tube with travelling pulses and fine glints (additive) over a soft gold base */
-      const goldMat = new THREE.ShaderMaterial({
-        uniforms: { t: { value: 0 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
-        vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
-        fragmentShader: `varying vec2 vUv; uniform float t;
-          void main(){
-            float u = vUv.x;
-            float glint = pow(0.5 + 0.5 * sin(u * 1400.0 - t * 4.0), 14.0) * (0.6 + 0.4 * sin(u * 37.0 + t));
-            float f = fract(u * 5.0 - t * 0.06);
-            float pulse = smoothstep(0.0, 0.05, f) * (1.0 - smoothstep(0.05, 0.42, f));
-            float breathe = 0.8 + 0.2 * sin(t * 1.4);
-            vec3 gold = vec3(1.0, 0.72, 0.25), hi = vec3(1.0, 0.95, 0.78);
-            vec3 col = mix(gold, hi, clamp(glint * 0.9 + pulse * 0.7, 0.0, 1.0));
-            float a = (0.16 + 0.75 * glint + 0.55 * pulse) * breathe;
-            gl_FragColor = vec4(col * a, a);
-          }`
+      const api = { selected: null, hover: null, zoomScale: 1, icons: false, cloudsOn: true, elevation: () => 0 };
+      let scene, camera, renderer, items = [], birds = [], path = [], sand = null, clouds = [], shadows = [];
+      /* ---------- golden sand: thousands of additive sprites drifting along the Silk Road ---------- */
+      const N = 7000, LEG_T = 9000;            // every leg takes 9 s, so the stream lingers in town and rushes between cities
+      const sandTex = (() => {
+        const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d");
+        const g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,245,210,1)"); g.addColorStop(0.25, "rgba(255,200,90,0.9)"); g.addColorStop(0.6, "rgba(255,160,40,0.25)"); g.addColorStop(1, "rgba(255,140,20,0)");
+        x.fillStyle = g; x.fillRect(0, 0, 64, 64); const t = new THREE.CanvasTexture(c); return t;
+      })();
+      const sandMat = new THREE.ShaderMaterial({
+        uniforms: { map: { value: sandTex }, uPx: { value: 3 }, uTime: { value: 0 } },
+        transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+        vertexShader: `attribute float aSize; attribute float aPhase; uniform float uPx; uniform float uTime; varying float vA;
+          void main(){ vec4 p = projectionMatrix * modelViewMatrix * vec4(position, 1.0); gl_Position = p;
+            gl_PointSize = aSize * uPx; vA = 0.55 + 0.45 * sin(uTime * 2.2 + aPhase); }`,
+        fragmentShader: `uniform sampler2D map; varying float vA; void main(){ vec4 c = texture2D(map, gl_PointCoord); gl_FragColor = vec4(c.rgb * vA, c.a * vA); }`
       });
-      const baseMat = new THREE.MeshBasicMaterial({ color: 0xe0a93a, transparent: true, opacity: 0.32, depthWrite: false });
-      function buildRibbon(zs) {
-        if (ribbon) { scene.remove(ribbon); ribbon.traverse(m => m.geometry && m.geometry.dispose()); }
-        const pts = path.map(([x, z], i) => new THREE.Vector3(x, api.elevation(route[i]) + 3 * zs, z));
-        const curve = new THREE.CatmullRomCurve3(pts, false, "centripetal", 0.5);
-        const segs = Math.min(3000, pts.length * 5);
-        ribbon = new THREE.Group();
-        ribbon.add(new THREE.Mesh(new THREE.TubeGeometry(curve, segs, 1.1 * zs, 6, false), baseMat));
-        ribbon.add(new THREE.Mesh(new THREE.TubeGeometry(curve, segs, 2.3 * zs, 8, false), goldMat));
-        scene.add(ribbon); ribbonZs = zs; ribbonElev = !!api.terrainOn;
-        return ribbon;
+      const sandState = new Float32Array(N * 4);   // leg, u, speed, lateral offset
+      function buildSand() {
+        const geo = new THREE.BufferGeometry(), pos = new Float32Array(N * 3), size = new Float32Array(N), phase = new Float32Array(N);
+        const legs = path.length - 1;
+        for (let i = 0; i < N; i++) {
+          sandState[i * 4] = Math.floor(Math.random() * legs); sandState[i * 4 + 1] = Math.random();
+          sandState[i * 4 + 2] = 0.6 + Math.random() * 0.9; sandState[i * 4 + 3] = (Math.random() - 0.5) * 2;
+          size[i] = 0.5 + Math.pow(Math.random(), 2.5) * 2.5; phase[i] = Math.random() * 6.283;
+        }
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3)); geo.setAttribute("aSize", new THREE.BufferAttribute(size, 1)); geo.setAttribute("aPhase", new THREE.BufferAttribute(phase, 1));
+        sand = new THREE.Points(geo, sandMat); sand.frustumCulled = false; scene.add(sand);
+      }
+      let lastSand = 0;
+      function updateSand(now, zs) {
+        const dt = Math.min(0.05, (now - lastSand) / 1000 || 0.016); lastSand = now;
+        const pos = sand.geometry.attributes.position.array, legs = path.length - 1, w = 9 * zs;
+        for (let i = 0; i < N; i++) {
+          let leg = sandState[i * 4], u = sandState[i * 4 + 1] + sandState[i * 4 + 2] * dt * 1000 / LEG_T;
+          if (u >= 1) { u -= 1; leg = (leg + 1) % legs; sandState[i * 4] = leg; }
+          sandState[i * 4 + 1] = u;
+          const a = path[leg], b = path[leg + 1]; const dx = b[0] - a[0], dz = b[1] - a[1], len = Math.hypot(dx, dz) || 1;
+          const nx = -dz / len, nz = dx / len, off = sandState[i * 4 + 3] * w * (0.6 + 0.4 * Math.sin(now / 900 + i));
+          const x = a[0] + dx * u + nx * off, z = a[1] + dz * u + nz * off;
+          pos[i * 3] = x; pos[i * 3 + 1] = api.elevation(route[leg]) + (2 + 6 * Math.abs(sandState[i * 4 + 3])) * zs + Math.sin(now / 500 + i) * 1.5 * zs; pos[i * 3 + 2] = z;
+        }
+        sand.geometry.attributes.position.needsUpdate = true;
+        sandMat.uniforms.uTime.value = now / 1000;
+        sandMat.uniforms.uPx.value = (1.6 + Math.min(6, Math.max(0, 15.6 - Math.log2(zs) - 9)) * 0.55) * (window.devicePixelRatio > 1 ? 1.4 : 1);
+      }
+      /* ---------- clouds: soft fBm billboards high above the city, each with a ground shadow ---------- */
+      const cloudTex = (() => {
+        const S = 256, c = document.createElement("canvas"); c.width = c.height = S; const x = c.getContext("2d"); const img = x.createImageData(S, S), d = img.data;
+        const rnd = new Float32Array(64 * 64); for (let i = 0; i < rnd.length; i++) rnd[i] = Math.random();
+        const val = (px, py) => { const x0 = Math.floor(px) & 63, y0 = Math.floor(py) & 63, fx = px - Math.floor(px), fy = py - Math.floor(py), sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
+          const a = rnd[y0 * 64 + x0], b = rnd[y0 * 64 + ((x0 + 1) & 63)], cc = rnd[((y0 + 1) & 63) * 64 + x0], dd = rnd[((y0 + 1) & 63) * 64 + ((x0 + 1) & 63)];
+          return (a + (b - a) * sx) + ((cc + (dd - cc) * sx) - (a + (b - a) * sx)) * sy; };
+        for (let y = 0; y < S; y++) for (let xx = 0; xx < S; xx++) {
+          let n = 0, amp = 0.5, f = 3 / S; for (let o = 0; o < 5; o++) { n += val(xx * f, y * f) * amp; amp *= 0.5; f *= 2; }
+          const dx = xx / S - 0.5, dy = y / S - 0.5, r = Math.sqrt(dx * dx + dy * dy) * 2;
+          const mask = Math.max(0, 1 - r * r), a = Math.max(0, Math.min(1, (n - 0.42) * 3.2)) * mask;
+          const i = (y * S + xx) * 4, lum = 235 + n * 20; d[i] = lum; d[i + 1] = lum; d[i + 2] = lum + 6; d[i + 3] = a * 255;
+        }
+        x.putImageData(img, 0, 0); return new THREE.CanvasTexture(c);
+      })();
+      function buildClouds() {
+        const cm = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, opacity: 0.9, color: 0xfff8ee });
+        const sm = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, opacity: 0.34, color: 0x3a2410 });
+        for (let i = 0; i < 16; i++) {
+          const puff = new THREE.Group(); const n = 3 + Math.floor(Math.random() * 3);
+          for (let k = 0; k < n; k++) { const sp = new THREE.Sprite(cm); const sc = 0.5 + Math.random() * 0.7; sp.scale.set(sc, sc * (0.55 + Math.random() * 0.3), 1); sp.position.set((Math.random() - 0.5) * 0.8, (Math.random() - 0.3) * 0.25, (Math.random() - 0.5) * 0.3); puff.add(sp); }
+          const shadow = new THREE.Sprite(sm); shadow.scale.set(1.3, 0.9, 1);
+          scene.add(puff); scene.add(shadow);
+          clouds.push({ g: puff, sh: shadow, x: (Math.random() - 0.5) * 9000, z: (Math.random() - 0.5) * 7000, size: 480 + Math.random() * 640, h: 260 + Math.random() * 120, sp: 2.2 + Math.random() * 1.6 });
+        }
+      }
+      function updateClouds(now, zs) {
+        const k = Math.max(1, zs * 0.55), t = now / 1000;
+        for (const c of clouds) {
+          let x = c.x + t * c.sp * 4; x = ((x + 4500) % 9000 + 9000) % 9000 - 4500;      // wind from the west, wraps around the region
+          const y = api.elevation([68.27, 43.3]);
+          c.g.position.set(x, y + c.h * k, c.z); c.g.scale.setScalar(c.size * k); c.g.visible = api.cloudsOn;
+          c.sh.position.set(x + 60 * k, y + 2 * k, c.z + 40 * k); c.sh.scale.set(c.size * k * 1.2, c.size * k * 0.75, 1); c.sh.visible = api.cloudsOn;
+        }
       }
       const self = {
         id: "tourello-3d", type: "custom", renderingMode: "3d",
@@ -188,7 +254,7 @@ import maplibregl from "maplibre-gl";
           }
           for (let i = 0; i < 7; i++) { const b = bird(); scene.add(b); birds.push({ b, phase: i * 0.9, r: 110 + i * 14, h: 70 + i * 6, sp: 0.00045 + i * 0.00004 }); }
           path = route.map(local);
-          ribbon = buildRibbon(1);
+          buildSand(); buildClouds();
           renderer = new THREE.WebGLRenderer({ canvas: m.getCanvas(), context: gl, antialias: true }); renderer.autoClear = false;
         },
         render(gl, matrix) {
@@ -207,9 +273,7 @@ import maplibregl from "maplibre-gl";
             bd.b.rotation.y = -a + Math.PI / 2; bd.b.scale.setScalar(zs * 1.3);
             const f = Math.sin(now / 90 + bd.phase) * 0.6; bd.b.userData.l.rotation.z = f; bd.b.userData.r.rotation.z = -f;
           }
-          /* ribbon follows the icon scale and the terrain; rebuilt only when the scale changes noticeably */
-          if (Math.abs(zs / ribbonZs - 1) > 0.18 || ribbonElev !== !!api.terrainOn) buildRibbon(zs);
-          goldMat.uniforms.t.value = now / 1000;
+          updateSand(now, zs); updateClouds(now, zs);
           camera.projectionMatrix = new THREE.Matrix4().fromArray(matrix).multiply(base);
           renderer.resetState(); renderer.render(scene, camera); map.triggerRepaint();
         }
