@@ -2,6 +2,7 @@ import maplibregl from "maplibre-gl";
 import { TMap } from "./map.js";
 import { CATS, PLACES, INFO, SEASONS } from "./places.js";
 import { CREDITS } from "./credits.js";
+import { LANGS, UI, t, lang as initialLang, langInfo, loadContent, setLang } from "./i18n.js";
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -16,16 +17,49 @@ import { CREDITS } from "./credits.js";
     bowl: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 11h18a9 9 0 01-18 0zM8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg>',
     peak: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 20l7-13 4 7 3-4 6 10zM9 7l-2 3 2 1 2-1z"/></svg>'
   };
-  const cat = id => CATS.find(c => c.id === id);
+  /* ---------- language ---------- */
+  let content = null;                                           // translated content for the current language (null = English)
+  const tr = p => content && content.places[p.id] ? { ...p, ...content.places[p.id] } : p;
+  const PL = () => PLACES.map(tr);
+  const cat = id => { const c = CATS.find(c => c.id === id); return content && content.cats[id] ? { ...c, name: content.cats[id] } : c; };
+  const infoRows = () => (content && content.info) || INFO;
+  const audioDir = () => (langInfo().code === "en" ? "assets/audio" : `assets/audio/${langInfo().code}`);
+  function applyStatic() {
+    $$("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+    $$("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+    $("#langLabel").textContent = langInfo().code.toUpperCase();
+    $("#barLabel").textContent = current ? tr(PLACES.find(p => p.id === current)).name : t("exploreTk");
+    $("#layersLabel").textContent = T.sat ? t("illustrated") : t("satellite");
+    $("#audioLabel").textContent = guide.on ? t("audioOn") : t("audioOff");
+    $("#tourLabel").textContent = tour.on ? `${t("stopTour")} · ${tour.index + 1}/${PLACES.length}` : t("tour");
+    renderList(); renderModal();
+    if (current) renderPanel(tr(PLACES.find(p => p.id === current)));
+    $$(".pin").forEach((el, i) => { const p = tr(PLACES[i]); el.setAttribute("aria-label", p.name); const b = el.querySelector(".t"); if (b) b.textContent = p.name; const sm = el.querySelector("span small"); if (sm) sm.textContent = `${cat(p.cat).name} · TK-${String(i + 1).padStart(2, "0")}`; });
+    document.title = `Tourello: ${t("exploreTk")}`;
+  }
+  async function useLang(code) {
+    setLang(code); content = await loadContent(code);
+    $$("#langPick button, .lang-menu button").forEach(b => b.classList.toggle("on", b.dataset.lang === code));
+    applyStatic();
+  }
+  $("#langPick").innerHTML = LANGS.map(l => `<button data-lang="${l.code}" role="option">${l.label}</button>`).join("");
+  const langMenu = document.createElement("div"); langMenu.className = "lang-menu"; langMenu.innerHTML = LANGS.map(l => `<button data-lang="${l.code}">${l.label}</button>`).join(""); document.body.appendChild(langMenu);
+  $("#langPick").addEventListener("click", e => { const b = e.target.closest("button"); if (b) useLang(b.dataset.lang); });
+  langMenu.addEventListener("click", e => { const b = e.target.closest("button"); if (b) { useLang(b.dataset.lang); langMenu.classList.remove("open"); } });
+  $("#btnLang").addEventListener("click", e => { e.stopPropagation(); langMenu.classList.toggle("open"); });
+  document.addEventListener("pointerdown", e => { if (!langMenu.contains(e.target) && e.target.closest("#btnLang") === null) langMenu.classList.remove("open"); });
   const photo = p => `assets/photos/${p.id}.jpg`, thumb = p => `assets/photos/thumb/${p.id}.jpg`;
   const CR = CREDITS;
   const gallery = p => [p.id, p.id + "-2", p.id + "-3"].filter(k => CR[k]).map(k => ({ key: k, src: `assets/photos/${k}.jpg`, thumb: `assets/photos/thumb/${k}.jpg`, c: CR[k] }));
-  const creditText = c => `Photo: ${c.author || "Wikimedia Commons"} · ${c.license}`;
+  const creditText = c => `${t("photo")}: ${c.author || "Wikimedia Commons"} · ${c.license}`;
 
   /* ---------- list ---------- */
   const listEl = $("#list"), barEl = $("#bar");
-  listEl.innerHTML = `<div class="grp"><button data-id="__region">Whole region</button></div>` +
-    CATS.map(c => `<div class="grp"><h4>${c.name}</h4>${PLACES.filter(p => p.cat === c.id).map(p => `<button data-id="${p.id}">${p.name}</button>`).join("")}</div>`).join("");
+  function renderList() {
+    listEl.innerHTML = `<div class="grp"><button data-id="__region">${t("region")}</button></div>` +
+      CATS.map(c => `<div class="grp"><h4>${cat(c.id).name}</h4>${PL().filter(p => p.cat === c.id).map(p => `<button data-id="${p.id}"${p.id === current ? ' class="on"' : ""}>${p.name}</button>`).join("")}</div>`).join("");
+  }
+  renderList();
   const setList = open => { barEl.classList.toggle("open", open); $("#btnList").setAttribute("aria-expanded", open); };
   $("#btnList").addEventListener("click", () => setList(!barEl.classList.contains("open")));
   listEl.addEventListener("click", e => {
@@ -36,7 +70,7 @@ import { CREDITS } from "./credits.js";
   document.addEventListener("pointerdown", e => { if (!barEl.contains(e.target)) setList(false); });
 
   /* ---------- camera ---------- */
-  const pad = () => isMobile() ? { top: 60, bottom: innerHeight * 0.58, left: 0, right: 0 } : { top: 0, bottom: 0, left: 0, right: Math.min(460, innerWidth) };
+  const pad = () => isMobile() ? { top: 60, bottom: innerHeight * 0.58, left: 0, right: 0 } : (document.documentElement.dir === "rtl" ? { top: 0, bottom: 0, right: 0, left: Math.min(460, innerWidth) } : { top: 0, bottom: 0, left: 0, right: Math.min(460, innerWidth) });
   const NOPAD = { top: 0, bottom: 0, left: 0, right: 0 };
   function focusOn(p) {
     T.setTerrain(p.z < 13);
@@ -53,9 +87,9 @@ import { CREDITS } from "./credits.js";
   /* ---------- markers ---------- */
   const markers = [];
   function buildMarkers() {
-    for (const p of PLACES) {
+    for (let p of PLACES) {
       const wrap = document.createElement("div"), el = document.createElement("button");
-      const c = cat(p.cat);
+      const c = cat(p.cat); p = tr(p);
       wrap.className = "pin-wrap"; el.className = `pin pin-${p.cat}`; el.setAttribute("aria-label", p.name);
       const n = String(PLACES.indexOf(p) + 1).padStart(2, "0");
       el.innerHTML = `${CR[p.id] ? `<img src="${thumb(p)}" alt="" loading="lazy">` : `<i>${ICONS[c.icon]}</i>`}<u>TK-${n}</u><span><small>${c.name} · TK-${n}</small><b class="t">${p.name}</b></span>`;
@@ -75,19 +109,20 @@ import { CREDITS } from "./credits.js";
     const c = cat(p.cat), i = PLACES.findIndex(x => x.id === p.id);
     panel.innerHTML = `
       <button class="p-close" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-      <div class="p-head"><div class="p-ico">${ICONS[c.icon]}</div><div class="p-kicker">${c.name} · Turkestan region</div><h2>${p.name}</h2><p class="p-tag">${p.tag}</p></div>
+      <div class="p-head"><div class="p-ico">${ICONS[c.icon]}</div><div class="p-kicker">${c.name} · ${t("regionName")}</div><h2>${p.name}</h2><p class="p-tag">${p.tag}</p></div>
       <div class="p-body">
         ${(g => g.length ? `<div class="p-gallery n${g.length}">${g.map((x, i) => `<button class="g-item" data-i="${i}" aria-label="Open photo"><img src="${i ? x.thumb : x.src}" alt="${p.name}" loading="lazy"></button>`).join("")}</div>` : "")(gallery(p))}
         ${p.body.map(t => `<p>${t}</p>`).join("")}
         <dl class="p-facts">${p.facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
-        <h3>Visitor tips</h3><ul>${p.tips.map(t => `<li>${t}</li>`).join("")}</ul>
-        <a class="p-route" target="_blank" rel="noopener" href="https://www.openstreetmap.org/directions?to=${p.ll[1]}%2C${p.ll[0]}">Get directions →</a>
+        <h3>${t("tips")}</h3><ul>${p.tips.map(x => `<li>${x}</li>`).join("")}</ul>
+        <a class="p-route" target="_blank" rel="noopener" href="https://www.openstreetmap.org/directions?to=${p.ll[1]}%2C${p.ll[0]}">${t("directions")}</a>
       </div>
-      <div class="p-nav"><button data-nav="-1">← Previous</button><button data-nav="1">Next place →</button></div>`;
+      <div class="p-nav"><button data-nav="-1">${t("prev")}</button><button data-nav="1">${t("next")}</button></div>`;
     panel.scrollTop = 0; panel.dataset.i = i;
   }
   function openPlace(id, fromTour) {
-    const p = PLACES.find(x => x.id === id); if (!p || !map) return;
+    const p0 = PLACES.find(x => x.id === id); if (!p0 || !map) return;
+    const p = tr(p0);
     if (!fromTour && tour.on) tour.stop();
     current = id; history.replaceState(null, "", "#" + id);
     renderPanel(p); body.classList.add("panel-open"); $("#hudName").textContent = p.name;
@@ -105,7 +140,7 @@ import { CREDITS } from "./credits.js";
     body.classList.remove("panel-open");
     markers.forEach(({ el }) => el.classList.remove("on"));
     $$("#list button").forEach(b => b.classList.remove("on"));
-    $("#barLabel").textContent = "Explore Turkestan"; $("#hudName").textContent = "Turkestan";
+    $("#barLabel").textContent = t("exploreTk"); $("#hudName").textContent = "Turkestan";
     T.models.api.selected = null; guide.stop();
     map.easeTo({ padding: NOPAD, duration: 900 });
   }
@@ -113,7 +148,7 @@ import { CREDITS } from "./credits.js";
   const lb = $("#lightbox"); let lbItems = [], lbI = 0;
   function showLb(i) {
     lbI = (i + lbItems.length) % lbItems.length; const x = lbItems[lbI];
-    $("#lbImg").src = x.src; $("#lbCap").innerHTML = `<b>${PLACES.find(q => q.id === current).name}</b> · ${lbI + 1}/${lbItems.length} · <a href="${x.c.source}" target="_blank" rel="noopener">${creditText(x.c)}</a>`;
+    $("#lbImg").src = x.src; $("#lbCap").innerHTML = `<b>${tr(PLACES.find(q => q.id === current)).name}</b> · ${lbI + 1}/${lbItems.length} · <a href="${x.c.source}" target="_blank" rel="noopener">${creditText(x.c)}</a>`;
     lb.classList.add("open"); lb.setAttribute("aria-hidden", "false");
   }
   const closeLb = () => { lb.classList.remove("open"); lb.setAttribute("aria-hidden", "true"); };
@@ -138,7 +173,7 @@ import { CREDITS } from "./credits.js";
     const n = (T.season + 1) % 4; T.setSeason(n); $("#seasonLabel").textContent = SEASONS[n]; flash(seasonBtn);
   });
   layersBtn.addEventListener("click", () => {
-    T.setSat(!T.sat); $("#layersLabel").textContent = T.sat ? "Illustrated" : "Satellite"; flash(layersBtn);
+    T.setSat(!T.sat); $("#layersLabel").textContent = T.sat ? t("illustrated") : t("satellite"); flash(layersBtn);
     body.classList.toggle("sat", T.sat);
     markers.forEach(({ m }) => m.setOffset(T.sat ? [0, 0] : [0, -104]));
   });
@@ -149,7 +184,11 @@ import { CREDITS } from "./credits.js";
     let on = true, voice = null;
     /* voice: calm British male first (Edge "Ryan Natural", macOS "Daniel", Chrome "Google UK English Male"), then any neural voice */
     const PREF = [/Ryan.*Natural/i, /Thomas.*Natural/i, /Google UK English Male/i, /Daniel/i, /Sonia.*Natural/i, /Libby.*Natural/i, /Google UK English Female/i, /Natural|Neural|Premium|Enhanced/i, /en-GB|en_GB/i];
-    const pick = () => { if (!synth) return; const vs = synth.getVoices().filter(v => /^en(-|_)/i.test(v.lang)); for (const r of PREF) { const v = vs.find(v => r.test(v.name) || r.test(v.lang)); if (v) { voice = v; break; } } if (!voice) voice = vs[0] || null; };
+    const pick = () => {
+      if (!synth) return; const code = langInfo().speech.slice(0, 2); const vs = synth.getVoices().filter(v => v.lang.toLowerCase().startsWith(code)); voice = null;
+      if (code === "en") { for (const r of PREF) { const v = vs.find(v => r.test(v.name) || r.test(v.lang)); if (v) { voice = v; break; } } }
+      else voice = vs.find(v => /Natural|Neural|Online|Google/i.test(v.name)) || vs[0] || null;
+    };
     let player = null;
     /* studio audio override: drop assets/audio/<id>.mp3 (and welcome.mp3) next to the site and it plays instead of the browser voice */
     let done = null, cur = null;
@@ -163,25 +202,25 @@ import { CREDITS } from "./credits.js";
     /* order: pre-generated mp3 in public/assets/audio (npm run audio) → browser voice */
     const play = (id, text, cb) => {
       if (!on) { cb && setTimeout(cb, 8000); return; } stopAll(); done = cb || null;
-      playUrl(`assets/audio/${id}.mp3`, () => say(text));
+      pick(); playUrl(`${audioDir()}/${id}.mp3`, () => say(text));
     };
     const stopAll = () => { if (player) { player.pause(); player = null; } if (synth) synth.cancel(); body.classList.remove("speaking"); done = null; };
     if (synth) { pick(); synth.onvoiceschanged = pick; }
     const say = text => {
       if (!on || !synth) return; synth.cancel();
-      const u = new SpeechSynthesisUtterance(text); u.lang = "en-GB"; if (voice) u.voice = voice; u.rate = 0.92; u.pitch = 0.88;
+      const u = new SpeechSynthesisUtterance(text); u.lang = langInfo().speech; if (voice) u.voice = voice; u.rate = 0.92; u.pitch = 0.88;
       cur = u;
       /* a cancelled utterance still fires onerror later: only the current one may end the step */
       u.onstart = () => body.classList.add("speaking"); u.onend = u.onerror = () => { if (cur === u) finish(); };
       synth.speak(u);
     };
-    const render = () => { btn.classList.toggle("off", !on); btn.setAttribute("aria-pressed", on); $("#audioLabel").textContent = on ? "Audio guide on" : "Audio guide off"; };
+    const render = () => { btn.classList.toggle("off", !on); btn.setAttribute("aria-pressed", on); $("#audioLabel").textContent = on ? t("audioOn") : t("audioOff"); };
     btn.addEventListener("click", () => { on = !on; if (!on) stopAll(); render(); });
     render();
     return {
       get on() { return on; }, set(v) { on = v; if (!on) stopAll(); render(); },
-      welcome: () => play("welcome", "Welcome to Turkestan, the spiritual capital of the Silk Road. Drag to move around the city, scroll to zoom, and choose any landmark to hear its story."),
-      place: (p, cb) => play(p.id, `${p.name}. ${p.tag}. ${p.body.join(" ")} A tip for your visit: ${p.tips[0]}`, cb),
+      welcome: () => play("welcome", t("welcome")),
+      place: (p, cb) => play(p.id, `${p.name}. ${p.tag}. ${p.body.join(" ")} ${t("tip")}: ${p.tips[0]}`, cb),
       stop: stopAll
     };
   })();
@@ -189,16 +228,16 @@ import { CREDITS } from "./credits.js";
   /* ---------- guided tour: the guide flies from place to place and narrates each one ---------- */
   const tour = (() => {
     const btn = $("#btnTour"); let on = false, i = -1, timer = null;
-    const label = () => { btn.classList.toggle("on", on); btn.setAttribute("aria-pressed", on); $("#tourLabel").textContent = on ? `Stop tour · ${i + 1}/${PLACES.length}` : "Guided tour"; };
+    const label = () => { btn.classList.toggle("on", on); btn.setAttribute("aria-pressed", on); $("#tourLabel").textContent = on ? `${t("stopTour")} · ${i + 1}/${PLACES.length}` : t("tour"); };
     const step = () => { if (!on) return; i = (i + 1) % PLACES.length; label(); openPlace(PLACES[i].id, true); };
-    const t = {
-      get on() { return on; },
+    const tourApi = {
+      get on() { return on; }, get index() { return i; },
       start() { on = true; i = -1; if (!guide.on) guide.set(true); step(); },
       stop() { on = false; clearTimeout(timer); label(); },
       next() { if (!on) return; clearTimeout(timer); timer = setTimeout(step, 1600); }
     };
-    btn.addEventListener("click", () => on ? (t.stop(), closePanel()) : t.start());
-    label(); return t;
+    btn.addEventListener("click", () => on ? (tourApi.stop(), closePanel()) : tourApi.start());
+    label(); return tourApi;
   })();
 
   /* ---------- intro & onboarding ---------- */
@@ -208,15 +247,15 @@ import { CREDITS } from "./credits.js";
     if (!map) return;
     body.classList.add("exploring"); T.drift = false; guide.welcome();
     map.flyTo({ center: [68.2712, 43.2968], zoom: 15.2, pitch: 60, bearing: map.getBearing() + 40, duration: 3200, essential: true });
-    $("#hintTitle").textContent = "Drag to move";
-    $("#hintText").innerHTML = touch ? "Explore Turkestan by<br>dragging with your finger" : "Explore Turkestan by holding<br>and dragging the cursor";
+    $("#hintTitle").textContent = t("hintDrag");
+    $("#hintText").innerHTML = touch ? t("hintDragTouch") : t("hintDragText");
     hint.classList.remove("zoom"); stage = 1;
   }
   window.addEventListener("tmap:interact", e => {
     if (stage === 1 && e.detail === "drag") {
       stage = 2; hint.classList.add("zoom");
-      $("#hintTitle").textContent = touch ? "Pinch to zoom" : "Scroll to zoom";
-      $("#hintText").innerHTML = touch ? "Dive into the landscape<br>by pinching" : "Dive into the landscape<br>by scrolling";
+      $("#hintTitle").textContent = touch ? t("hintZoomTouch") : t("hintZoom");
+      $("#hintText").innerHTML = touch ? t("hintZoomTouchText") : t("hintZoomText");
     } else if (stage === 2 && e.detail === "zoom") { stage = 3; ready(); }
   });
   $("#btnExplore").addEventListener("click", startExplore);
@@ -225,8 +264,11 @@ import { CREDITS } from "./credits.js";
 
   /* ---------- modal ---------- */
   const modal = $("#modal");
-  $("#tab-info").innerHTML = `<h2>Travel information</h2><p class="lead">The practical basics for visiting Turkestan.</p><div class="info-grid">${INFO.map(([t, x]) => `<div><h3>${t}</h3><p>${x}</p></div>`).join("")}</div>`;
-  $("#interests").innerHTML = CATS.map(c => `<label><input type="checkbox" name="i" value="${c.id}"><span>${c.name}</span></label>`).join("");
+  function renderModal() {
+    $("#tab-info").innerHTML = `<h2>${t("infoTitle")}</h2><p class="lead">${t("infoLead")}</p><div class="info-grid">${infoRows().map(([h, x]) => `<div><h3>${h}</h3><p>${x}</p></div>`).join("")}</div>`;
+    $("#interests").innerHTML = CATS.map(c => `<label><input type="checkbox" name="i" value="${c.id}"><span>${cat(c.id).name}</span></label>`).join("");
+  }
+  renderModal();
   function openModal(tab) {
     $$(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
     $$(".tab").forEach(t => t.classList.toggle("on", t.id === "tab-" + tab));
@@ -238,13 +280,14 @@ import { CREDITS } from "./credits.js";
   $("#modalX").addEventListener("click", closeModal);
   modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
   $$(".tabs button").forEach(b => b.addEventListener("click", () => openModal(b.dataset.tab)));
-  $("#form").addEventListener("submit", e => { e.preventDefault(); $("#thanks").textContent = "Thank you! We will be in touch soon."; e.target.reset(); });
+  $("#form").addEventListener("submit", e => { e.preventDefault(); $("#thanks").textContent = t("thanks"); e.target.reset(); });
   addEventListener("keydown", e => { if (e.key === "Escape") { closeModal(); setList(false); closePanel(); } });
 
   /* ---------- boot ---------- */
   const fail = () => { $("#loader").innerHTML = '<p style="font-family:Inter,sans-serif;color:#6f5a4b;text-align:center;padding:24px">The map could not be loaded.<br>Please check your connection and reload.</p>'; };
-  T.ready.then(m => {
+  T.ready.then(async m => {
     map = m; buildMarkers();
+    await useLang(initialLang || "en");
     /* HUD telemetry: camera azimuth/elevation, zoom, GPS of the view centre, fps, mission clock */
     const tAz = $("#tAz"), tEl = $("#tEl"), tZ = $("#tZ"), tFps = $("#tFps"), tT = $("#tT"), gps = $("#hudGps"), hudName = $("#hudName");
     const tele = () => {

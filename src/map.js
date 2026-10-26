@@ -75,7 +75,7 @@ import { TModels } from "./models.js";
   }
 
   /* ---------- Silk Road route: a soft curve through every place ---------- */
-  const ROUTE_ORDER = ["sauran", "tulips", "kultobe", "bazaar", "juma", "yasawi", "esim", "hilvet", "rabiga", "hamam", "museum", "kitchen", "karavan", "amph", "gauhar", "yurt", "arystanbab", "otrar", "sayram", "domalak", "aksu"];
+  const ROUTE_ORDER = ["sauran", "tulips", "kultobe", "bazaar", "juma", "mosque", "yasawi", "esim", "hilvet", "rabiga", "hamam", "museum", "kitchen", "fountain", "amph", "arbat", "theatre", "karavan", "taikazan", "gauhar", "jibek", "arena", "yurt", "arystanbab", "otrar", "sayram", "domalak", "aksu"];
   function routeGeo() {
     const pts = ROUTE_ORDER.map(id => PLACES.find(p => p.id === id)).filter(Boolean).map(p => p.ll);
     const out = [];

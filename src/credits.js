@@ -281,5 +281,17 @@ export const CREDITS = {
   "author": "Мағыпар",
   "license": "CC BY-SA 4.0",
   "source": "https://commons.wikimedia.org/wiki/File:%D0%A2%D1%83%D1%80%D0%BA%D0%B5%D1%81%D1%82%D0%B0%D0%BD._%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9A%D0%B0%D1%80%D0%B0%D0%B2%D0%B0%D0%BD-%D0%A1%D0%B0%D1%80%D0%B0%D0%B9_IMG_20220616_162943.jpg"
+ },
+ "theatre": {
+  "file": "Туркестан. Драматический театр.jpg",
+  "author": "Мағыпар",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:%D0%A2%D1%83%D1%80%D0%BA%D0%B5%D1%81%D1%82%D0%B0%D0%BD._%D0%94%D1%80%D0%B0%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D1%82%D0%B5%D0%B0%D1%82%D1%80.jpg"
+ },
+ "theatre-2": {
+  "file": "Turkistan Musical Drama Theatre.jpg",
+  "author": "Nurbek Matzhani",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Turkistan_Musical_Drama_Theatre.jpg"
  }
 };

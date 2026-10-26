@@ -161,6 +161,43 @@ export const PLACES = [
   "z": 17.4
  },
  {
+  "id": "mosque",
+  "cat": "history",
+  "name": "Khoja Ahmed Yasawi Mosque",
+  "tag": "The new grand mosque beside the ancient complex",
+  "ll": [
+   68.27356,
+   43.29252
+  ],
+  "z": 16.6,
+  "body": [
+   "Just south of the mausoleum rises Turkestan’s new grand mosque, opened in 2026 and built as a gift from Uzbekistan to the people of Kazakhstan. Four minarets, a vast prayer hall for more than 5,000 worshippers and traditional aivans echo the Timurid forms of the old complex in modern materials.",
+   "Fountains, gardens and evening lighting around it have turned the southern edge of the historic centre into a new promenade."
+  ],
+  "facts": [
+   [
+    "Opened",
+    "2026"
+   ],
+   [
+    "Capacity",
+    "5,000+ worshippers"
+   ],
+   [
+    "Minarets",
+    "Four, about 61 m"
+   ],
+   [
+    "Time needed",
+    "45 minutes"
+   ]
+  ],
+  "tips": [
+   "Active mosque: modest dress, shoes off inside, no visits during prayer.",
+   "Come at dusk for the lighting and the view of both domes."
+  ]
+ },
+ {
   "id": "juma",
   "cat": "history",
   "name": "Juma Mosque of Turkestan",
@@ -359,6 +396,138 @@ export const PLACES = [
   ]
  },
  {
+  "id": "fountain",
+  "cat": "culture",
+  "name": "Musical Fountain",
+  "tag": "A lotus of water and light on summer nights",
+  "ll": [
+   68.27126,
+   43.30088
+  ],
+  "z": 17,
+  "body": [
+   "The singing fountain next to the amphitheatre is shaped like a lotus and surrounded by ten smaller jets. In the evening its columns of water, up to 15 metres high, dance to music and coloured light.",
+   "It was a gift from East Kazakhstan for the city’s rebirth in 2019 and is now the favourite evening meeting point of local families."
+  ],
+  "facts": [
+   [
+    "Opened",
+    "2019"
+   ],
+   [
+    "Shows",
+    "Summer evenings after dark"
+   ],
+   [
+    "Budget",
+    "Free"
+   ]
+  ],
+  "tips": [
+   "Shows run from late spring to early autumn.",
+   "Stand upwind unless you want a refreshing spray."
+  ]
+ },
+ {
+  "id": "arbat",
+  "cat": "culture",
+  "name": "Turkestan Arbat",
+  "tag": "The city’s pedestrian promenade",
+  "ll": [
+   68.27818,
+   43.29967
+  ],
+  "z": 17,
+  "body": [
+   "Turkestan’s Arbat is a pedestrian street with a stage, lighting installations and a 150-metre illuminated truss above the walkway. Street musicians, ice cream, souvenirs and free Wi-Fi make it the easiest place to feel the rhythm of the new city.",
+   "It links the historic centre with the Karavan Saray complex, so it is a natural evening stroll between the two."
+  ],
+  "facts": [
+   [
+    "Best time",
+    "Evenings"
+   ],
+   [
+    "Time needed",
+    "1 hour"
+   ],
+   [
+    "Budget",
+    "Free"
+   ]
+  ],
+  "tips": [
+   "Try the local ice cream and fresh juice stands.",
+   "Weekend evenings have the most music."
+  ]
+ },
+ {
+  "id": "theatre",
+  "cat": "culture",
+  "name": "Turkestan Music and Drama Theatre",
+  "tag": "510 seats of Kazakh and world drama",
+  "ll": [
+   68.27869,
+   43.29733
+  ],
+  "z": 17,
+  "body": [
+   "Opened in 2021, the theatre blends classical and oriental styles and seats 510. Its first production was “Borte”, about the wife of Genghis Khan; today the repertoire ranges from Kazakh epics to musicals and concerts.",
+   "Even without a ticket, the façade and the square in front are worth a look on the way along the Arbat."
+  ],
+  "facts": [
+   [
+    "Opened",
+    "2021"
+   ],
+   [
+    "Seats",
+    "510"
+   ],
+   [
+    "Language",
+    "Kazakh, some Russian"
+   ]
+  ],
+  "tips": [
+   "Buy tickets at the box office or online a few days ahead.",
+   "Dress smart-casual; locals do."
+  ]
+ },
+ {
+  "id": "taikazan",
+  "cat": "culture",
+  "name": "Taikazan Monument",
+  "tag": "A two-tonne bronze echo of the sacred cauldron",
+  "ll": [
+   68.29463,
+   43.28998
+  ],
+  "z": 16.8,
+  "body": [
+   "The original Taikazan, a bronze cauldron of two tonnes cast in 1399 for the Yasawi mausoleum, is a symbol of hospitality and the unity of the Turkic peoples. A full-size bronze replica stands in a small square on Nursultan Nazarbayev Street, where you can walk around it and touch it.",
+   "The original holds pride of place in the Kazandyk hall of the mausoleum; see both and compare."
+  ],
+  "facts": [
+   [
+    "Original cast",
+    "1399, by order of Timur"
+   ],
+   [
+    "Weight",
+    "About 2 tonnes"
+   ],
+   [
+    "Time needed",
+    "15 minutes"
+   ]
+  ],
+  "tips": [
+   "Locals make a wish with a hand on the rim.",
+   "The square is a pleasant stop on the way to the bazaar."
+  ]
+ },
+ {
   "id": "gauhar",
   "cat": "history",
   "name": "Gauhar Ana Mausoleum",
@@ -489,6 +658,72 @@ export const PLACES = [
    43.2962
   ],
   "z": 17
+ },
+ {
+  "id": "jibek",
+  "cat": "nature",
+  "name": "Jibek Joly Amusement Park",
+  "tag": "Rides, a Ferris wheel and green alleys",
+  "ll": [
+   68.33311,
+   43.27328
+  ],
+  "z": 16,
+  "body": [
+   "Jibek Joly (“Silk Road”) park in the new part of the city has fourteen Italian-built rides, a Ferris wheel with a view over the steppe, shaded alleys, playgrounds and sports courts.",
+   "It is the place to take children after a morning of mausoleums, and a good spot to watch the sunset over the flat horizon."
+  ],
+  "facts": [
+   [
+    "Rides",
+    "14"
+   ],
+   [
+    "Time needed",
+    "2–3 hours"
+   ],
+   [
+    "Budget",
+    "$"
+   ]
+  ],
+  "tips": [
+   "Rides open from late afternoon in summer heat.",
+   "Combine with Turkestan Arena nearby if there is a match."
+  ]
+ },
+ {
+  "id": "arena",
+  "cat": "culture",
+  "name": "Turkestan Arena",
+  "tag": "A 7,000-seat stadium and the home of FC Turan",
+  "ll": [
+   68.34232,
+   43.26403
+  ],
+  "z": 16,
+  "body": [
+   "Turkestan Arena is the city’s modern stadium, home of FC Turan and the venue of the 2021 Kazakhstan Super Cup. Its sweeping roof is one of the landmarks of the new administrative district.",
+   "A football evening here is an easy way to meet locals: tickets are cheap and the atmosphere is friendly."
+  ],
+  "facts": [
+   [
+    "Capacity",
+    "7,000"
+   ],
+   [
+    "Opened",
+    "2021"
+   ],
+   [
+    "Budget",
+    "$"
+   ]
+  ],
+  "tips": [
+   "Check the Kazakhstan Premier League schedule.",
+   "Taxis back to the centre are easy to find after matches."
+  ]
  },
  {
   "id": "tulips",

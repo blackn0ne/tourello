@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "audio": "node scripts/generate-audio.mjs"
+    "audio": "node scripts/generate-audio.mjs",
+    "translate": "node scripts/translate.mjs"
   },
   "dependencies": {
     "maplibre-contour": "^0.1.1",

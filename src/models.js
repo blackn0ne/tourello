@@ -136,6 +136,66 @@ import maplibregl from "maplibre-gl";
       for (let i = -2; i <= 2; i++) g.add(mesh(new THREE.SphereGeometry(0.9, 8, 6), C.gold, i * 3, 9, 13));
       return g;
     },
+    grandmosque() {
+      const g = new THREE.Group();
+      g.add(disc(30, C.clay2)); g.add(box(34, 14, 26, C.cream, 0, 0.6, 0)); g.add(box(14, 20, 6, C.cream, 0, 0.6, 14)); g.add(box(8, 14, 1, C.tealDark, 0, 0.6, 17.2));
+      g.add(cyl(10, 10, 4, C.cream, 0, 14.6, -2, 20)); g.add(dome(10.5, C.teal, 0, 18.6, -2)); g.add(spire(0, 29, -2));
+      for (const [x, z] of [[-20, 16], [20, 16], [-20, -16], [20, -16]]) g.add(minaret(34, x, z));
+      return g;
+    },
+    cauldron() {
+      const g = new THREE.Group();
+      g.add(disc(14, C.clay2)); g.add(cyl(5, 5, 2, C.ink, 0, 0.6, 0, 16));
+      const pts = []; for (let i = 0; i <= 8; i++) pts.push(new THREE.Vector2(3 + Math.sin(i / 8 * Math.PI) * 6.5, 2.6 + i * 1.1));
+      g.add(mesh(new THREE.LatheGeometry(pts, 20), C.gold, 0, 0, 0));
+      for (let i = 0; i < 10; i++) { const a = i / 10 * 6.283; g.add(mesh(new THREE.SphereGeometry(0.9, 8, 6), C.gold, Math.cos(a) * 9.4, 9.5, Math.sin(a) * 9.4)); }
+      return g;
+    },
+    fountain() {
+      const g = new THREE.Group();
+      g.add(disc(16, C.clay2)); g.add(cyl(11, 11, 1.2, C.teal, 0, 0.6, 0, 24));
+      for (let i = 0; i < 8; i++) { const a = i / 8 * 6.283; g.add(mesh(new THREE.ConeGeometry(2.2, 6, 5), C.cream, Math.cos(a) * 5.5, 3.5, Math.sin(a) * 5.5)); }
+      g.add(cyl(0.8, 0.8, 14, C.white, 0, 1.8, 0, 8, { transparent: true, opacity: 0.7 }));
+      for (let i = 0; i < 10; i++) { const a = i / 10 * 6.283; g.add(cyl(0.3, 0.3, 5, C.white, Math.cos(a) * 9, 1.8, Math.sin(a) * 9, 6, { transparent: true, opacity: 0.6 })); }
+      return g;
+    },
+    promenade() {
+      const g = new THREE.Group();
+      g.add(disc(18, C.clay2)); g.add(box(30, 0.8, 8, C.clay, 0, 0.6, 0));
+      for (let i = -3; i <= 3; i++) { g.add(cyl(0.3, 0.3, 7, C.ink, i * 4.5, 1.4, -4.5)); g.add(cyl(0.3, 0.3, 7, C.ink, i * 4.5, 1.4, 4.5)); }
+      g.add(box(30, 0.6, 0.6, C.mandarin, 0, 8.4, -4.5)); g.add(box(30, 0.6, 0.6, C.mandarin, 0, 8.4, 4.5));
+      for (let i = -3; i <= 3; i++) g.add(mesh(new THREE.SphereGeometry(0.7, 8, 6), C.gold, i * 4.5 + 2, 8.7, 0));
+      g.add(box(6, 3, 3, C.rose, -10, 1.4, 0)); g.add(box(6, 3, 3, C.teal, 10, 1.4, 0));
+      return g;
+    },
+    theatre() {
+      const g = new THREE.Group();
+      g.add(disc(18, C.clay2)); g.add(box(26, 12, 18, C.cream, 0, 0.6, 0)); g.add(box(28, 1.5, 20, C.rose, 0, 12.6, 0));
+      for (let i = -3; i <= 3; i++) g.add(cyl(0.9, 0.9, 11, C.clay, i * 3.6, 0.6, 9.6));
+      g.add(mesh(new THREE.ConeGeometry(4, 5, 4), C.gold, 0, 15, 0)); g.add(box(10, 6, 0.5, C.mandarin, 0, 2, 9.2));
+      return g;
+    },
+    park() {
+      const g = new THREE.Group();
+      g.add(disc(24, C.green));
+      const wheel = new THREE.Group(); wheel.add(mesh(new THREE.TorusGeometry(10, 0.5, 8, 24), C.rose, 0, 12, 0));
+      for (let i = 0; i < 8; i++) { const a = i / 8 * 6.283; wheel.add(mesh(new THREE.BoxGeometry(2.2, 2.2, 2.2), [C.mandarin, C.gold, C.teal][i % 3], Math.cos(a) * 10, 12 + Math.sin(a) * 10, 0)); wheel.add(cyl(0.2, 0.2, 10, C.ink, Math.cos(a) * 5, 12 - 5 + Math.sin(a) * 5, 0)); }
+      wheel.position.z = -6; g.add(wheel);
+      g.add(cyl(0.6, 0.6, 12, C.ink, -4, 0.6, -6)); g.add(cyl(0.6, 0.6, 12, C.ink, 4, 0.6, -6));
+      for (const [x, z] of [[-14, 8], [-8, 12], [12, 10], [16, 4]]) { g.add(cyl(0.6, 0.6, 3, C.brick, x, 0.6, z)); g.add(mesh(new THREE.SphereGeometry(3, 10, 8), C.green, x, 5.5, z)); }
+      g.add(box(8, 3, 4, C.mandarin, 4, 0.6, 9));
+      return g;
+    },
+    stadium() {
+      const g = new THREE.Group();
+      g.add(disc(26, C.clay2));
+      g.add(mesh(new THREE.CylinderGeometry(20, 22, 7, 32, 1, true), C.cream, 0, 4.1, 0, { side: THREE.DoubleSide }));
+      g.add(mesh(new THREE.CylinderGeometry(21, 21, 0.6, 32), C.cream, 0, 7.9, 0));
+      g.add(mesh(new THREE.CylinderGeometry(13, 13, 0.4, 32), C.green, 0, 0.9, 0));
+      g.add(box(14, 0.2, 9, C.green, 0, 1.1, 0)); g.add(mesh(new THREE.TorusGeometry(23, 1.2, 8, 32), C.mandarin, 0, 8.4, 0));
+      for (let i = 0; i < 4; i++) { const a = i / 4 * 6.283 + 0.78; g.add(cyl(0.5, 0.5, 16, C.ink, Math.cos(a) * 24, 0.6, Math.sin(a) * 24)); g.add(box(3, 1.2, 1.2, C.white, Math.cos(a) * 24, 16.6, Math.sin(a) * 24)); }
+      return g;
+    },
     mountains() {
       const g = new THREE.Group();
       g.add(disc(30, C.clay2));
@@ -146,7 +206,7 @@ import maplibregl from "maplibre-gl";
       return g;
     }
   };
-  const KIND = { esim: ["mausoleum"], gauhar: ["mausoleum"], domalak: ["mausoleum"], juma: ["mosque"], amph: ["amphitheatre"], yasawi: ["mausoleum", true], rabiga: ["mausoleum"], arystanbab: ["mausoleum"], sayram: ["mausoleum"], hilvet: ["underground"], kultobe: ["ruins"], sauran: ["ruins"], otrar: ["ruins"], hamam: ["hammam"], museum: ["museum"], karavan: ["caravanserai"], yurt: ["yurts"], bazaar: ["bazaar"], kitchen: ["kitchen"], tulips: ["tulips"], aksu: ["mountains"] };
+  const KIND = { mosque: ["grandmosque"], taikazan: ["cauldron"], fountain: ["fountain"], arbat: ["promenade"], theatre: ["theatre"], jibek: ["park"], arena: ["stadium"], esim: ["mausoleum"], gauhar: ["mausoleum"], domalak: ["mausoleum"], juma: ["mosque"], amph: ["amphitheatre"], yasawi: ["mausoleum", true], rabiga: ["mausoleum"], arystanbab: ["mausoleum"], sayram: ["mausoleum"], hilvet: ["underground"], kultobe: ["ruins"], sauran: ["ruins"], otrar: ["ruins"], hamam: ["hammam"], museum: ["museum"], karavan: ["caravanserai"], yurt: ["yurts"], bazaar: ["bazaar"], kitchen: ["kitchen"], tulips: ["tulips"], aksu: ["mountains"] };
 
   function bird() {
     const g = new THREE.Group(), m = getMat(C.ink);
@@ -162,18 +222,21 @@ import maplibregl from "maplibre-gl";
       const api = { selected: null, hover: null, zoomScale: 1, icons: false, cloudsOn: true, elevation: () => 0 };
       let scene, camera, renderer, items = [], birds = [], path = [], sand = null, clouds = [], shadows = [];
       /* ---------- golden sand: thousands of additive sprites drifting along the Silk Road ---------- */
-      const N = 7000, LEG_T = 9000;            // every leg takes 9 s, so the stream lingers in town and rushes between cities
+      const N = 3200, LEG_T = 9000;            // every leg takes 9 s, so the stream lingers in town and rushes between cities
       const sandTex = (() => {
-        const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d");
-        const g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,245,210,1)"); g.addColorStop(0.25, "rgba(255,200,90,0.9)"); g.addColorStop(0.6, "rgba(255,160,40,0.25)"); g.addColorStop(1, "rgba(255,140,20,0)");
-        x.fillStyle = g; x.fillRect(0, 0, 64, 64); const t = new THREE.CanvasTexture(c); return t;
+        const S = 128, c = document.createElement("canvas"); c.width = c.height = S; const x = c.getContext("2d"), m = S / 2;
+        const g = x.createRadialGradient(m, m, 0, m, m, m * 0.22); g.addColorStop(0, "rgba(255,250,230,1)"); g.addColorStop(0.5, "rgba(255,215,120,0.8)"); g.addColorStop(1, "rgba(255,180,60,0)");
+        x.fillStyle = g; x.fillRect(0, 0, S, S);
+        const ray = (len, w, a, alpha) => { x.save(); x.translate(m, m); x.rotate(a); const lg = x.createLinearGradient(-len, 0, len, 0); lg.addColorStop(0, "rgba(255,220,140,0)"); lg.addColorStop(0.5, `rgba(255,240,200,${alpha})`); lg.addColorStop(1, "rgba(255,220,140,0)"); x.fillStyle = lg; x.beginPath(); x.moveTo(-len, 0); x.lineTo(0, -w); x.lineTo(len, 0); x.lineTo(0, w); x.closePath(); x.fill(); x.restore(); };
+        ray(m, 2.2, 0, 0.95); ray(m, 2.2, Math.PI / 2, 0.95); ray(m * 0.55, 1.4, Math.PI / 4, 0.45); ray(m * 0.55, 1.4, -Math.PI / 4, 0.45);
+        const t = new THREE.CanvasTexture(c); return t;
       })();
       const sandMat = new THREE.ShaderMaterial({
         uniforms: { map: { value: sandTex }, uPx: { value: 3 }, uTime: { value: 0 } },
         transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
         vertexShader: `attribute float aSize; attribute float aPhase; uniform float uPx; uniform float uTime; varying float vA;
           void main(){ vec4 p = projectionMatrix * modelViewMatrix * vec4(position, 1.0); gl_Position = p;
-            gl_PointSize = aSize * uPx; vA = 0.55 + 0.45 * sin(uTime * 2.2 + aPhase); }`,
+            float tw = 0.5 + 0.5 * sin(uTime * 3.1 + aPhase); tw = pow(tw, 5.0); gl_PointSize = aSize * uPx * (0.6 + 0.9 * tw); vA = 0.12 + 0.88 * tw; }`,
         fragmentShader: `uniform sampler2D map; varying float vA; void main(){ vec4 c = texture2D(map, gl_PointCoord); gl_FragColor = vec4(c.rgb * vA, c.a * vA); }`
       });
       const sandState = new Float32Array(N * 4);   // leg, u, speed, lateral offset
@@ -183,7 +246,7 @@ import maplibregl from "maplibre-gl";
         for (let i = 0; i < N; i++) {
           sandState[i * 4] = Math.floor(Math.random() * legs); sandState[i * 4 + 1] = Math.random();
           sandState[i * 4 + 2] = 0.6 + Math.random() * 0.9; sandState[i * 4 + 3] = (Math.random() - 0.5) * 2;
-          size[i] = 0.5 + Math.pow(Math.random(), 2.5) * 2.5; phase[i] = Math.random() * 6.283;
+          size[i] = 1.2 + Math.pow(Math.random(), 3) * 5; phase[i] = Math.random() * 6.283;
         }
         geo.setAttribute("position", new THREE.BufferAttribute(pos, 3)); geo.setAttribute("aSize", new THREE.BufferAttribute(size, 1)); geo.setAttribute("aPhase", new THREE.BufferAttribute(phase, 1));
         sand = new THREE.Points(geo, sandMat); sand.frustumCulled = false; scene.add(sand);
@@ -203,7 +266,7 @@ import maplibregl from "maplibre-gl";
         }
         sand.geometry.attributes.position.needsUpdate = true;
         sandMat.uniforms.uTime.value = now / 1000;
-        sandMat.uniforms.uPx.value = (1.6 + Math.min(6, Math.max(0, 15.6 - Math.log2(zs) - 9)) * 0.55) * (window.devicePixelRatio > 1 ? 1.4 : 1);
+        sandMat.uniforms.uPx.value = (2.2 + Math.min(6, Math.max(0, 15.6 - Math.log2(zs) - 9)) * 0.7) * (window.devicePixelRatio > 1 ? 1.4 : 1);
       }
       /* ---------- clouds: soft fBm billboards high above the city, each with a ground shadow ---------- */
       const cloudTex = (() => {
@@ -221,18 +284,18 @@ import maplibregl from "maplibre-gl";
         x.putImageData(img, 0, 0); return new THREE.CanvasTexture(c);
       })();
       function buildClouds() {
-        const cm = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, opacity: 0.9, color: 0xfff8ee });
-        const sm = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, opacity: 0.34, color: 0x3a2410 });
-        for (let i = 0; i < 16; i++) {
+        const cm = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, opacity: 0.72, color: 0xfff8ee });
+        const sm = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, opacity: 0.2, color: 0x3a2410 });
+        for (let i = 0; i < 7; i++) {
           const puff = new THREE.Group(); const n = 3 + Math.floor(Math.random() * 3);
           for (let k = 0; k < n; k++) { const sp = new THREE.Sprite(cm); const sc = 0.5 + Math.random() * 0.7; sp.scale.set(sc, sc * (0.55 + Math.random() * 0.3), 1); sp.position.set((Math.random() - 0.5) * 0.8, (Math.random() - 0.3) * 0.25, (Math.random() - 0.5) * 0.3); puff.add(sp); }
           const shadow = new THREE.Sprite(sm); shadow.scale.set(1.3, 0.9, 1);
           scene.add(puff); scene.add(shadow);
-          clouds.push({ g: puff, sh: shadow, x: (Math.random() - 0.5) * 9000, z: (Math.random() - 0.5) * 7000, size: 480 + Math.random() * 640, h: 260 + Math.random() * 120, sp: 2.2 + Math.random() * 1.6 });
+          clouds.push({ g: puff, sh: shadow, x: (Math.random() - 0.5) * 9000, z: (Math.random() - 0.5) * 7000, size: 260 + Math.random() * 340, h: 320 + Math.random() * 120, sp: 2.2 + Math.random() * 1.6 });
         }
       }
       function updateClouds(now, zs) {
-        const k = Math.max(1, zs * 0.55), t = now / 1000;
+        const k = Math.min(2.6, Math.max(1, zs * 0.4)), t = now / 1000;
         for (const c of clouds) {
           let x = c.x + t * c.sp * 4; x = ((x + 4500) % 9000 + 9000) % 9000 - 4500;      // wind from the west, wraps around the region
           const y = api.elevation([68.27, 43.3]);
