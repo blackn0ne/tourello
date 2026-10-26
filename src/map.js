@@ -196,6 +196,8 @@ import { TModels } from "./models.js";
     ["hillshade", "contour-minor", "contour-major", "grid-coarse", "grid-fine", "building"].forEach(id => m.getLayer(id) && m.setLayoutProperty(id, "visibility", on ? "none" : "visible"));
     ROADS_HIDE_IN_SAT.forEach(id => m.getLayer(id) && m.setLayoutProperty(id, "visibility", on ? "none" : "visible"));
     m.setLayoutProperty("sat-tint", "visibility", on ? "visible" : "none");
+    /* real OSM volumes only make sense on the imagery; the illustrated map has its own 3D icons */
+    if (m.getLayer("building-3d")) m.setLayoutProperty("building-3d", "visibility", on ? "visible" : "none");
     m.setPaintProperty("place-glow", "circle-opacity", on ? 0.4 : 0.28);
     api.models.api.icons = !on;
     if (on) api.setTerrain(true);
